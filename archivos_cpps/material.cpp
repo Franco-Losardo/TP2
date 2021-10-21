@@ -1,4 +1,5 @@
 #include "../archivos_h/material.h"
+#include <string>
 
 using namespace std;
 
