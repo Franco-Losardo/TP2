@@ -1,5 +1,6 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
+
 #ifdef __linux__
 #define CLR_SCREEN "clear"
 #endif // __linux__
