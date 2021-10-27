@@ -5,16 +5,17 @@
 #include "../edificios.h"
 //deberia haber un artibuto que sea el objeto q 
 //contiene(osea el edificio), pero al ser abstracto no se puede poner como hice
+//ahora con el puntero deberia andar
 class Casillero_construible: public Casillero{
     private:
     bool ocupado;
-    //Edificio objeto;
+    Edificio* objeto;
 
     public:
     Casillero_construible(int coord_x, int coord_y);
     bool es_posible_construir();
     void mostrar();
-    //void ocupar_casillero(Edificio objeto); //nose si para ocuparlo haria falta las coordenadas
+    void ocupar_casillero(Edificio* objeto);
 };
 
 #endif
