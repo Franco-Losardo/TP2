@@ -44,6 +44,10 @@ class Material{
     // PRE: -
     // POS: Muestra por pantalla los atributos del material
     void mostrar_material();
+
+    // PRE:
+    // POS:
+    void saludar();
 };
 
 #endif

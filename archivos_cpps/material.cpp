@@ -30,3 +30,7 @@ void Material::devolver_material(int cantidad_a_devolver){
 void Material::mostrar_material(){
     cout << "|" << setw(10) << this -> nombre_material << "|" << setw(10) << this -> cantidad << "|" << endl;
 }
+
+void Material::saludar(){
+    cout << "Soy un/a " << this->nombre_material << " y me encuentro en el casillero consultado" << endl;
+}

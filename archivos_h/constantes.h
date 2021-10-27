@@ -2,7 +2,9 @@
 #define CONSTANTES_H
 #include <string>
 using namespace std;
-const int EDIFICIOS_DISPONIBLES_MINIMO = 3
+
+const int MATERIALES_DISPONIBLES_MINIMO = 3;
+const int EDIFICIOS_DISPONIBLES_MINIMO = 4;
 
 const char DELIMITADOR = ' ';
 
@@ -11,7 +13,7 @@ const string RUTA_EDIFICIOS = "../archivos_de_texto/edificios.txt";
 const string RUTA_MAPA = "../archivos_de_texto/mapa.txt";
 const string RUTA_UBICACIONES = "../archivos_de_texto/ubicaciones.txt";
 const string LINEA_DIVISORIA = "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550";
-const string RUTA_MAPA "../archivos_de_texto/mapa.txt"
+const string RUTA_MAPA = "../archivos_de_texto/mapa.txt";
 
 const string COLOR_ROJO = "\e[38;5;196m";
 const string COLOR_POR_DEFECTO = "\e[0m";

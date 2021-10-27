@@ -2,43 +2,69 @@
 #define EDIFICIOS_H
 
 #include <string>
+using namespace std;
 
-class Edificio {
-    private:
-        std::string nombre;
-        int cantidad_permitida;
-        int cantidad_construidos;
-        int materiales_necesarios[3];
-        UBICACIONES; // sería un arreglo de arreglos: {{2, 3}, {3, 5}}, cada subarreglo sería una ubicación
-    
-    public:
-        // PRE:
-        // POS:
-        Edificio();
+class Edificio{
+protected:
+    // Atributos
+    string nombre;
+    int piedra_necesaria;
+    int madera_necesaria;
+    int metal_necesario;
+    int cantidad_permitida;
+    int cantidad_construidos;
+    int coord_x;
+    int coord_y;
+    bool ubicado; // para no cambiar las coordenadas de un edificio que ya fue posicionado, es decir, que ya se le asigno coord_x y coord_y
+public:
+    //Metodos
 
-        // PRE:
-        // POS:
-        Edificio(std::string nombre, int cantidad_permitida, int* materiales_necesarios);
+    // PRE:
+    // POS:
+    Edificio();//al ser abstracto habria q sacar ambos constructores no?
+    // PRE:
+    // POS:
+    Edificio(string nombre);
 
-        // PRE:
-        // POS:
-        std::string obtener_nombre();
+    // PRE:
+    // POS:
+    string obtener_nombre();
 
-        // PRE:
-        // POS:
-        int obtener_cantidad_permitida();
+    // PRE:
+    // POS:
+    int obtener_cantidad_permitida();
 
-        // PRE:
-        // POS:
-        int obtener_materiales_necesarios();
+    // PRE:
+    // POS:
+    int* obtener_materiales_necesarios();
 
-        // PRE: 
-        // POS:
-        void aumentar_construidos();
+    // PRE:
+    // POS:
+    void establecer_materiales_necesarios(int piedra_necesaria, int madera_necesaria, int metal_necesario);
 
-        // PRE:
-        // POS:
-        void establecer_ubicacion(UBICACION)
+    // PRE:
+    // POS:
+    void aumentar_construidos();
+
+    // PRE:
+    // POS:
+    void establecer_ubicacion(int coord_x, int coord_y);
+
+    // PRE:
+    // POS:
+    int* obtener_ubicacion();
+
+    // PRE:
+    // POS:
+    bool esta_ubicado();
+
+    // PRE:
+    // POS:
+    void cambiar_estado();
+
+    // PRE:
+    // POS:
+    virtual int brindar_materiales() = 0;
 };
 
 #endif
