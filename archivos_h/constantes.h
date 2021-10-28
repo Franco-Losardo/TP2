@@ -5,6 +5,9 @@ using namespace std;
 
 const int MATERIALES_DISPONIBLES_MINIMO = 3;
 const int EDIFICIOS_DISPONIBLES_MINIMO = 4;
+const int BRINDAR_MATERIALES_MINA = 15;//piedras
+const int BRINDAR_MATERIALES_ASERRADERO = 25;//maderas
+const int BRINDAR_MATERIALES_FABRICA = 40;//metales
 
 const char DELIMITADOR = ' ';
 
