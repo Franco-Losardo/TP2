@@ -9,7 +9,7 @@
 using namespace std;
 
 class Material{
-    private:
+    protected:
     // Atributos
     string nombre_material; // Tipo de material
     int cantidad;
@@ -47,7 +47,7 @@ class Material{
 
     // PRE:
     // POS:
-    void saludar();
+    virtual void saludar();
 };
 
 #endif
