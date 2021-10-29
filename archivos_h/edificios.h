@@ -64,7 +64,12 @@ public:
 
     // PRE:
     // POS:
-    virtual int brindar_materiales() = 0;
+    virtual int brindar_materiales();
+
+    // PRE:
+    // POS:
+    virtual void mostrar_saludo();
+
 };
 
 #endif

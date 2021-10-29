@@ -3,32 +3,49 @@
 #include "constantes.h"
 #include "edificios.h"
 #include "material.h"
+#include "mapa.h"
+#include "casilleros/casillero_construible.h"
+#include "casilleros/casillero_transitable.h"
+#include "casilleros/casillero_inaccesible.h"
+#include "materiales/piedra.h"
+#include "materiales/madera.h"
+#include "materiales/metal.h"
 
 class Andypolis{
     private:
-    int cantidad_de_materiales, cantidad_de_edificios;
-    Material* materiales;
-    Edificio* edificios;
+    int cantidad_de_materiales;
+    Mapa mapa;
+    Material* materiales; //no estoy seguro de este puntero
 
-    // PRE:
-    // POS:
-    void cargar_materiales_iniciales();
-
-    // PRE:
-    // POS:
-    void cargar_edificios_iniciales();
+    public:
+    
+    // PRE: -
+    // POS: Construye un Objeto Andypolis
+    Andypolis();
     
     // PRE:
     // POS:
-    void cargar_ubicaciones_iniciales();
+    void cargar_mapa();
+    
+    // PRE:
+    // POS:
+    void cargar_materiales();
+
+    // PRE:
+    // POS:
+    void cargar_edificios();
+    
+    // PRE:
+    // POS:
+    void cargar_ubicaciones();
+
+    // PRE:
+    // POS:
+    void mostrar_mapa();
 
     // PRE: Recibe un entero positivo
     // POS: Redimensiona el arreglo de materiales
     void redimensionar_materiales(int nueva_longitud);
-
-    // PRE: Recibe un entero positivo
-    // POS: Redimensiona el arreglo de edificios
-    void redimensionar_edificios(int nueva_longitud);
 
     //PRE: -
     // POS: Guarda los nuevos datos de los materiales
@@ -41,12 +58,6 @@ class Andypolis{
     // PRE: 
     // POS:
     void guardar_y_salir();
-
-    public:
-
-    // PRE: -
-    // POS: Construye un Objeto Andypolis
-    Andypolis();
 
     // PRE: 
     // POS: 
@@ -65,10 +76,6 @@ class Andypolis{
     // PRE:
     // POS:
     void demoler_edificio_por_coordenada();
-
-    // PRE:
-    // POS:
-    void mostrar_mapa();
 
     // PRE:
     // POS:

@@ -7,13 +7,13 @@
 class Casillero_transitable: public Casillero{
     private:
     bool ocupado;
-    Material objeto;
+    Material* objeto;
 
     public:
-    Casillero_transitable(int coord_x, int coord_y);
-    bool es_posible_construir();
+    bool esta_ocupado();
     void mostrar();
-    void ocupar_casillero(Material objeto);//nose si para ocuparlo haria falta las coordenadas
+    void ocupar_casillero(Material* objeto);//nose si para ocuparlo haria falta las coordenadas
+    char obtener_tipo();
 };
 
 #endif

@@ -4,18 +4,30 @@
 
 class Mapa: public Casillero{
 private:
-    int cantidad_de_filas;//tal vez haya mas atributos
-    int cantidad_de_columnas;
-    int** matriz;
+    int cantidad_filas;
+    int cantidad_columnas;
+    Casillero** mapa;
 
 public:
-    Mapa(int cantidad_de_filas, int cantidad_de_columnas);
+    // PRE:
+    // POS:
+    Mapa();
 
-    void cargar_mapa_inicial();
-    void guardar_mapa();
+    // PRE:
+    // POS:
+    Mapa(int cantidad_filas, int cantidad_columnas);
 
-    void redimensionar_mapa();//o es siempre fijo?
+    // PRE:
+    // POS:
+    void colocar_casillero(int fila, int columna, Casillero casillero);
+
+    // PRE:
+    // POS:
+    bool se_puede_construir(int fila, int columna);
+
+    // PRE:
+    // POS:
+    void mostrar_mapa();
 };
-
 
 #endif

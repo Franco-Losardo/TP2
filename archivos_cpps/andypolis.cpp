@@ -8,11 +8,9 @@ using namespace std;
 
 Andypolis::Andypolis(){
     this -> materiales = new Material[MATERIALES_DISPONIBLES_MINIMO];
-    //this -> edificios = new Edificio[EDIFICIOS_DISPONIBLES_MINIMO];
     this -> cantidad_de_materiales = 0;
-    this -> cantidad_de_edificios = 0;
-    cargar_materiales_iniciales();
-    //cargar_edificios_iniciales();
+    cargar_materiales();
+    cargar_mapa();
 }
 
 int Andypolis::pedir_opcion() {
@@ -43,15 +41,45 @@ int Andypolis::pedir_opcion() {
     return opcion_ingresada;
 }
 
-/*
+void Andypolis::cargar_mapa(){
+    ifstream archivo_mapa(RUTA_MAPA);
+    if(!archivo_mapa){
+        cout << COLOR_ROJO << "El archivo de mapa no existe. Para continuar, crealos y volve a correr el programa." << COLOR_POR_DEFECTO << endl;
+        exit(1);
+    }
+    char caracter;
+    int cantidad_filas;
+    int cantidad_columnas;
 
-* EDIFICIOS: (NO ESTA DEFINIDO) sería un arreglo de objetos Edificio
-* cantidad_de_edificios: es un contador, para saber la cantidad de edificios disponibles en el juego
-* UBICACION: (NO ESTA DEFINIDO) sería un arreglo de enteros, ejemplo: {2, 3}
+    this->mapa = Mapa(cantidad_filas, cantidad_columnas);
 
-*/
+    while (!archivo_mapa.eof()){
+        for (int fila = 0; fila < cantidad_filas; fila++){
+            for (int columna = 0; columna < cantidad_columnas; columna++){
+                archivo_mapa >> caracter;
+                if (caracter == 'T'){
+                    Casillero_construible casillero_c;
+                    this->mapa.colocar_casillero(fila, columna, casillero_c);
+                }
+                else if (caracter == 'C'){
+                    Casillero_transitable casillero_t;
+                    this->mapa.colocar_casillero(fila, columna, casillero_t);
+                }
+                else{
+                    Casillero_inaccesible casillero_i;
+                    this->mapa.colocar_casillero(fila, columna, casillero_i);
+                }
+            }
+        }
+    }
+    archivo_mapa.close();
+}
 
-void Andypolis::cargar_materiales_iniciales(){
+void Andypolis::mostrar_mapa(){
+    this->mapa.mostrar_mapa();
+}
+
+void Andypolis::cargar_materiales(){
     ifstream archivo_materiales(RUTA_MATERIALES);
     if (!archivo_materiales){
         cout << COLOR_ROJO << "El archivo de materiales no existe. Para continuar, crealos y volve a correr el programa." << COLOR_POR_DEFECTO << endl;
@@ -61,7 +89,15 @@ void Andypolis::cargar_materiales_iniciales(){
     string cantidad;
     while(getline(archivo_materiales, nombre_material, DELIMITADOR)){
         getline(archivo_materiales, cantidad);
-        this -> materiales[this -> cantidad_de_materiales] = Material(nombre_material, stoi(cantidad));
+        if(nombre_material == "piedra"){
+            this->materiales[this->cantidad_de_materiales] = Piedra(nombre_material, stoi(cantidad));
+        }
+        else if(nombre_material == "madera"){
+            this->materiales[this->cantidad_de_materiales] = Madera(nombre_material, stoi(cantidad));
+        }
+        else if(nombre_material == "metal"){
+            this->materiales[this->cantidad_de_materiales] = Metal(nombre_material, stoi(cantidad));
+        }        
         this -> cantidad_de_materiales++;
         if (this -> cantidad_de_materiales == MATERIALES_DISPONIBLES_MINIMO){
             redimensionar_materiales(this -> cantidad_de_materiales * 2);
@@ -72,7 +108,7 @@ void Andypolis::cargar_materiales_iniciales(){
 }
 
 
-void Andypolis::redimensionar_materiales(int nueva_longitud){
+void Andypolis::redimensionar_materiales(int nueva_longitud){//esto tal vez haya q cambiarlo pq hay una clase x cada material
     Material *nuevo_arreglo_materiales = new Material[nueva_longitud];
     for (int i = 0; i < this-> cantidad_de_materiales; i++){
         nuevo_arreglo_materiales[i] = this -> materiales[i];
@@ -96,18 +132,6 @@ void Andypolis::guardar_materiales(){
     }
     archivo_materiales.close();
 }
-/* Habria que modificarlo para que los guarde recorriendo el mapa
-void Andypolis::guardar_edificios(){
-    ofstream archivo_materiales(RUTA_UBICACIONES);
-    for (int i = 0; i < this -> cantidad_de_edificios; i++){
-        string nombre_edificio = this -> edificios[i].obtener_nombre();
-        int* coordenadas = this -> edificios[i].obtener_ubicacion();
-        int coord_x, coord_y = coordenadas[0], coordenadas[1];
-        archivo_materiales << nombre_edificio << DELIMITADOR << "(" << coord_x << DELIMITADOR << ", " << coord_y << ")" << endl;
-    }
-    archivo_materiales.close();
-    
-}*/
 
 void Andypolis::guardar_y_salir(){
     guardar_materiales();

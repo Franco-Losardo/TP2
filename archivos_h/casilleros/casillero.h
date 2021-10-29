@@ -13,8 +13,8 @@ class Casillero{
     // PRE:
     // POS:
     Casillero(int coordenada_x, int coordenada_y);
-
-    virtual void mostrar() = 0;
+    virtual void mostrar();
+    virtual char obtener_tipo();
 };
 
 

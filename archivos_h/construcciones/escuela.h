@@ -6,6 +6,7 @@
 class Escuela: public Edificio{
 public:
     int brindar_materiales();
+    void mostrar_saludo();
 };
 
 #endif

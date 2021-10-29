@@ -5,3 +5,7 @@
 int Aserradero::brindar_materiales(){
     return BRINDAR_MATERIALES_ASERRADERO;
 }
+
+void Aserradero::mostrar_saludo(){
+    cout << "Soy un aserradero y me encuentro en el casillero consultado" << endl;
+}

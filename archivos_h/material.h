@@ -13,7 +13,7 @@ class Material{
     // Atributos
     string nombre_material; // Tipo de material
     int cantidad;
-
+    //tal vez nos convenga q los materiales tengas coordenadas?
     public:
     // Métodos
 
@@ -47,7 +47,7 @@ class Material{
 
     // PRE:
     // POS:
-    virtual void saludar() = 0;
+    virtual void saludar();
 };
 
 #endif

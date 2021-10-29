@@ -12,10 +12,10 @@ class Casillero_construible: public Casillero{
     Edificio* objeto;
 
     public:
-    Casillero_construible(int coord_x, int coord_y);
-    bool es_posible_construir();
+    bool esta_ocupado();
     void mostrar();
     void ocupar_casillero(Edificio* objeto);
+    char obtener_tipo();
 };
 
 #endif

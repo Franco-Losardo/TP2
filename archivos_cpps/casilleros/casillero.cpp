@@ -4,7 +4,7 @@
 Casillero::Casillero(){
 }
 
-Casillero::Casillero(int coordenada_x, int coordenada_y){
-    this->coord_x = coordenada_x;
-    this->coord_y = coordenada_y;
+Casillero::Casillero(int coord_x, int coord_y){
+    this->coord_x = coord_x;
+    this->coord_y = coord_y;
 }
