@@ -6,7 +6,15 @@ class Casillero{
     int coord_x;
     int coord_y;
     public:
-    void virtual mostrar() = 0;
+    // PRE:
+    // POS:
+    Casillero();
+    
+    // PRE:
+    // POS:
+    Casillero(int coordenada_x, int coordenada_y);
+
+    virtual void mostrar() = 0;
 };
 
 

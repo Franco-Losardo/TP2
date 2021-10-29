@@ -47,7 +47,7 @@ class Material{
 
     // PRE:
     // POS:
-    virtual void saludar();
+    virtual void saludar() = 0;
 };
 
 #endif
