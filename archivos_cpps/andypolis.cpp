@@ -1,5 +1,6 @@
 #include <fstream>
 #include <algorithm>
+#include <cstdlib>
 #include "../archivos_h/andypolis.h"
 
 using namespace std;
@@ -138,7 +139,6 @@ int Andypolis::pedir_opcion() {
 }
 
 void Andypolis::guardar_edificios() {
-
 }
 
 bool Andypolis::existe_el_edificio(string edificio){
@@ -385,7 +385,7 @@ void Andypolis::demoler_edificio_por_coordenada() {
     elegir_opcion();
 }
 
-void Andypolis::recolectar_recursos_perdidos() {
+void Andypolis::recolectar_recursos_producidos() {
     Material* inventario = this->inventario.obtener_inventario();
     int contador = 0;
     for (int i = 0; i < this -> cantidad_edificios; i++){
@@ -467,7 +467,7 @@ void Andypolis::elegir_opcion() {
             mostrar_inventario();
             break;
         case 8:
-            recolectar_recursos_perdidos();
+            recolectar_recursos_producidos();
             break;
         case 9:
             lluvia_de_recursos();

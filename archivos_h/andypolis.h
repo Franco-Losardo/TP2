@@ -122,7 +122,7 @@ class Andypolis{
 
         // PRE:
         // POS:
-        void recolectar_recursos_perdidos();
+        void recolectar_recursos_producidos();
 
         // PRE:
         // POS:
