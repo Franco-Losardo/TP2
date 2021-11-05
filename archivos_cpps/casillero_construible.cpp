@@ -34,10 +34,11 @@ Material* Casillero_construible::obtener_material(){
 
 void Casillero_construible::mostrar() {
     if (this -> edificio) {
-        cout << "Soy un casillero construible y no me encuentro vacio" << endl;
+        cout << COLOR_VERDE_AGUA << "Soy un casillero construible y no me encuentro vacio" << COLOR_POR_DEFECTO <<endl;
+        cout << endl;
         this -> edificio -> mostrar_saludo();
     }
     else{
-        cout << "Soy un casillero construible y me encuentro vacío" << endl;
+        cout << COLOR_VERDE << "Soy un casillero construible y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }

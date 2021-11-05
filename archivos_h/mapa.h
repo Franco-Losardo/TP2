@@ -34,7 +34,7 @@ class Mapa {
 
         // PRE:
         // POS:
-        void colocar_casillero(int coord_x, int coord_y, Casillero *casillero);
+        void colocar_casillero(int coord_x, int coord_y, Casillero* casillero);
 
         // PRE:
         // POS:
@@ -46,6 +46,9 @@ class Mapa {
         // PRE:
         // POS:
         void consultar_coordenada(int coord_x, int coord_y);
+
+
+        Edificio* obtener_elemento(int coord_x , int coord_y);
 
         // PRE:
         // POS:

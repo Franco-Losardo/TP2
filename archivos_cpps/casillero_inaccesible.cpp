@@ -8,7 +8,7 @@ bool Casillero_inaccesible::es_posible_construir(){
 }
 
 void Casillero_inaccesible::mostrar(){
-    cout << "Soy un casillero inaccesible y no es posible construir aqui" << endl;
+    cout << COLOR_ROJO << "Soy un casillero inaccesible y no es posible construir aqui" << COLOR_POR_DEFECTO << endl;
 }
 
 Edificio* Casillero_inaccesible::obtener_edificio(){

@@ -29,10 +29,11 @@ Edificio* Casillero_transitable::obtener_edificio(){
 
 void Casillero_transitable::mostrar() {
     if (this -> material) {
-        cout << "Soy un casillero transitable y no me encuentro vacio" << endl;
+        cout << COLOR_VERDE_AGUA << "Soy un casillero transitable y no me encuentro vacio" << COLOR_POR_DEFECTO << endl;
+        cout << endl;
         this -> material->saludar();
     }
     else {
-        cout << "Soy un casillero transitable y me encuentro vacío" << endl;
+        cout << COLOR_VERDE << "Soy un casillero transitable y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }

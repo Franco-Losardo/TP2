@@ -55,7 +55,9 @@ class Andypolis{
 
         void mostrar_mapa();
 
-        void devolver_mitad_materiales();
+        void devolver_mitad_materiales(string nombre_edificio);
+
+        void cargar_construidos();
 
         void mostrar_inventario();
         // PRE:

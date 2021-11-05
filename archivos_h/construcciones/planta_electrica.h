@@ -19,8 +19,11 @@ class Planta_electrica: public Edificio{
         // POS:
         void mostrar_saludo();
 
-
         int obtener_construidos();
+
+        // PRE:
+        // POS:
+        void mostrar_edificio();
 
         ~Planta_electrica();
 };

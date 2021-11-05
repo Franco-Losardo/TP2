@@ -22,6 +22,10 @@ class Escuela: public Edificio{
 
         int obtener_construidos();
 
+        // PRE:
+        // POS:
+        void mostrar_edificio();
+
         ~Escuela();
 };
 

@@ -49,11 +49,15 @@ void Mapa::cargar_mapa() {
 }
 
 void Mapa::colocar_casillero(int coord_x, int coord_y, Casillero* casillero){
-    this -> mapa[coord_y][coord_x] = casillero;
+    this -> mapa[coord_x][coord_y] = casillero;
 }
 
 bool Mapa::esta_ocupado(int coord_x, int coord_y){
-    return this->mapa[coord_y][coord_x]->esta_ocupado();
+    return this->mapa[coord_x][coord_y]->esta_ocupado();
+}
+
+Edificio* Mapa::obtener_elemento(int coord_x, int coord_y){
+    return this->mapa[coord_x][coord_y]->obtener_edificio();
 }
 
 void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y){
@@ -66,15 +70,20 @@ void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x,
 }
 
 bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y){
-    return (coord_x > cantidad_columnas || coord_y > cantidad_filas);
+    return (coord_x >= cantidad_filas || coord_y >= cantidad_columnas);
 }
 
 void Mapa::consultar_coordenada(int coord_x, int coord_y) {
-    this -> mapa[coord_y][coord_x] -> mostrar();
+    if(!coordenadas_fuera_de_rango(coord_x, coord_y)){
+        this -> mapa[coord_x][coord_y] -> mostrar();
+    }
+    else{
+        cout << COLOR_ROJO << "Oops, intentaste acceder a una coordenada fuera de rango, intenta nuevamente" << COLOR_POR_DEFECTO <<endl;
+    }
 }
 
 bool Mapa::se_puede_construir(int coord_x, int coord_y){
-    return this -> mapa[coord_y][coord_x] -> obtener_tipo() == 'T';
+    return this -> mapa[coord_x][coord_y] -> obtener_tipo() == 'T';
 }
 
 void Mapa::mostrar_mapa(){

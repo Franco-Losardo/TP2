@@ -26,13 +26,24 @@ int Obelisco::brindar_materiales() {
     return 0;
 }
 
+void Obelisco::mostrar_edificio(){
+    cout << "--> " << COLOR_VERDE_AGUA << this->nombre << COLOR_POR_DEFECTO << endl;
+    cout << endl;
+    cout << "Piedra requerida: " << this->materiales_necesarios[0] << endl;
+    cout << "Madera requerida: " << this->materiales_necesarios[1] << endl;
+    cout << "Metal requerido: " << this->materiales_necesarios[2] << endl;
+    cout << "Construidos hasta el momento: " << this->cantidad_construidos << endl;
+    cout << "Puede construir " << this->cantidad_permitida - this->cantidad_construidos << " mas" << endl;
+    cout << "Brinda material: NO" << endl;
+    cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
+}
 
 int Obelisco::obtener_construidos(){
     return this->cantidad_construidos;
 }
 
 void Obelisco::mostrar_saludo() {
-    cout << "Soy un obelisco y me encuentro en el casillero consultado" << endl;
+    cout << COLOR_MARRON <<"Soy un obelisco y me encuentro en el casillero consultado" << COLOR_POR_DEFECTO <<endl;
 }
 
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include "constantes.h"
 using namespace std;
 class Edificio{
     protected:
@@ -50,6 +51,10 @@ class Edificio{
         // POS:
         virtual int obtener_construidos() = 0;
         
+        // PRE:
+        // POS:
+        virtual void mostrar_edificio() = 0;
+
         // PRE:
         // POS:
         ~Edificio();

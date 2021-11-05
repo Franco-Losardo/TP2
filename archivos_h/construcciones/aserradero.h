@@ -22,6 +22,10 @@ class Aserradero: public Edificio {
         // PRE:
         // POS:
         int obtener_construidos();
+        
+        // PRE:
+        // POS:
+        void mostrar_edificio();
 
         ~Aserradero();
 };

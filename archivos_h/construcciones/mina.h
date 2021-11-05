@@ -20,6 +20,10 @@ class Mina: public Edificio{
 
         int obtener_construidos();
 
+        // PRE:
+        // POS:
+        void mostrar_edificio();
+
         ~Mina();
 };
 

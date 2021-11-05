@@ -10,6 +10,7 @@ Andypolis::Andypolis() {
     this -> inventario.cargar_inventario();
     this -> mapa.cargar_mapa();
     this -> cargar_edificios_disponibles();
+    this -> cargar_construidos();
 }
 
 void Andypolis::guardar_y_salir() {
@@ -68,7 +69,35 @@ void Andypolis::cargar_edificios_disponibles(){
         numero_edificio++;
     }
     archivo_edificios.close();
-    this->redimensionar_arreglo_edificios(numero_edificio);
+    this -> cantidad_edificios = numero_edificio;
+    this->redimensionar_arreglo_edificios(this->cantidad_edificios);
+}
+
+void Andypolis::cargar_construidos(){
+    ifstream archivo_ubicaciones(RUTA_UBICACIONES);
+    if (!archivo_ubicaciones){
+        cout << COLOR_ROJO << "El archivo de ubicaciones no existe. Para continuar, crealo y vuelve a correr el programa." << COLOR_POR_DEFECTO << endl;
+        exit(1);
+    }
+    string nombre;
+    string nombre2;
+    char basura;
+    int coord_x;
+    int coord_y;
+    while (archivo_ubicaciones >> nombre){
+        if (nombre == "planta"){
+            archivo_ubicaciones >> nombre2;
+            nombre += " " + nombre2;
+        }
+        archivo_ubicaciones >> basura;
+        archivo_ubicaciones >> coord_y;
+        archivo_ubicaciones >> basura;
+        archivo_ubicaciones >> coord_x;
+        archivo_ubicaciones >> basura;
+        Edificio* edificio = construir_edificio(nombre, coord_x, coord_y);
+        this->mapa.ocupar_casillero(edificio, nullptr, coord_x, coord_y);
+    }
+    archivo_ubicaciones.close();
 }
 
 void Andypolis::redimensionar_arreglo_edificios(int nueva_longitud) {
@@ -113,11 +142,11 @@ void Andypolis::guardar_edificios() {
 }
 
 bool Andypolis::existe_el_edificio(string edificio){
+    int indice = 0;
     bool existe = false;
-    for (int i = 0; i < this->cantidad_edificios; i++){
-        if (this->edificios_disponibles[i]->obtener_nombre() == edificio){
-            existe = true;
-        }
+    while (!existe && indice < this->cantidad_edificios){
+        existe = this->edificios_disponibles[indice]->obtener_nombre() == edificio;
+        indice++;
     }
     return existe;
 }
@@ -130,13 +159,15 @@ void Andypolis::mostrar_nombres_de_edificios(){
 }
 
 int Andypolis::posicion_del_edifcio(string edificio){
-    int pos_edificio = -1;
-    for (int i = 0; i < this->cantidad_edificios; i++){
-        if (this->edificios_disponibles[i]->obtener_nombre() == edificio){
-            pos_edificio = i;
+    int indice = 0;
+    bool se_encontro = false;
+    while (!se_encontro){
+        se_encontro = this->edificios_disponibles[indice]->obtener_nombre() == edificio;
+        if (!se_encontro){
+            indice++;
         }
     }
-    return pos_edificio;
+    return indice;
 }
 
 int* Andypolis::obtener_materiales_necesarios(int pos_edificio){
@@ -145,44 +176,34 @@ int* Andypolis::obtener_materiales_necesarios(int pos_edificio){
 }
 
 bool Andypolis::hay_materiales_suficientes(string edificio_a_construir){
-    bool hay_mat_suficientes = true;
+    int pos_edificio = posicion_del_edifcio(edificio_a_construir);
     int cantidad_de_materiales = this->inventario.obtener_cantidad_materiales();
-    int* materiales_necesarios;
-    Material* materiales_actuales = this->inventario.obtener_inventario();
-    for (int i = 0; i < this->cantidad_edificios; i++){
-        if(this->edificios_disponibles[i]->obtener_nombre() == edificio_a_construir){
-            materiales_necesarios = obtener_materiales_necesarios(i);
-        }
-    }
-    int piedra_necesaria = materiales_necesarios[0];
-    int madera_necesaria = materiales_necesarios[1];
-    int metal_necesario = materiales_necesarios[2];
+    Material *materiales_actuales = this->inventario.obtener_inventario();
+    int *materiales_necesarios = this->edificios_disponibles[pos_edificio]->obtener_materiales_necesarios();
 
-    for (int i = 0; i < cantidad_de_materiales; i++){
-        if (materiales_actuales[i].obtener_tipo() == "piedra"){
-            if (materiales_actuales[i].obtener_cantidad() < piedra_necesaria){
-                hay_mat_suficientes = false;
-            }
+    int indice = 0;
+    bool hay_piedra_suficiente = true;
+    bool hay_madera_suficiente = true;
+    bool hay_metal_suficiente = true;
+    while (hay_piedra_suficiente && hay_madera_suficiente && hay_metal_suficiente && indice < cantidad_de_materiales){
+        if (materiales_actuales[indice].obtener_tipo() == "piedra"){
+            hay_piedra_suficiente = materiales_actuales[indice].obtener_cantidad() > materiales_necesarios[0];
         }
-        else if (materiales_actuales[i].obtener_tipo() == "madera"){
-            if (materiales_actuales[i].obtener_cantidad() < madera_necesaria){
-                hay_mat_suficientes = false;
-            }
+        else if (materiales_actuales[indice].obtener_tipo() == "madera"){
+            hay_madera_suficiente = materiales_actuales[indice].obtener_cantidad() > materiales_necesarios[1];
         }
-        else if (materiales_actuales[i].obtener_tipo() == "metal"){
-            if (materiales_actuales[i].obtener_cantidad() < metal_necesario){
-                hay_mat_suficientes = false;
-            }
+        else if (materiales_actuales[indice].obtener_tipo() == "metal")
+        {
+            hay_metal_suficiente = materiales_actuales[indice].obtener_cantidad() > materiales_necesarios[2];
         }
+        indice++;
     }
-    return hay_mat_suficientes;
+    return hay_piedra_suficiente && hay_madera_suficiente && hay_metal_suficiente;
 }
 
 bool Andypolis::se_alcanzo_maximo_permitido(string edificio_a_construir){
     int pos_edificio = posicion_del_edifcio(edificio_a_construir);
-    int cantidad_de_construidos = this->edificios_disponibles[pos_edificio]->obtener_construidos();
-    int maximo_permitido = this->edificios_disponibles[pos_edificio]->obtener_cantidad_permitida();
-    return (cantidad_de_construidos == maximo_permitido);
+    return this->edificios_disponibles[pos_edificio]->obtener_construidos() == this->edificios_disponibles[pos_edificio]->obtener_cantidad_permitida();
 }
 
 bool Andypolis::pedir_confirmacion(string edificio_a_construir){
@@ -197,9 +218,9 @@ bool Andypolis::pedir_confirmacion(string edificio_a_construir){
 int* Andypolis::pedir_coordenadas(){
     string coord_x;
     string coord_y;
-    cout << "Ingrese la coordenada x(columna): ";
+    cout << "Ingrese la coordenada x(fila): ";
     cin >> coord_x;
-    cout << "Ingrese la coordenada y(fila): ";
+    cout << "Ingrese la coordenada y(columna): ";
     cin >> coord_y;
     int* coordenadas = new int[2];//pido memoria!!!
     coordenadas[0] = stoi(coord_x);
@@ -230,10 +251,7 @@ void Andypolis::actualizar_cant_materiales(int pos_edificio){
 
 
 bool Andypolis::se_puede_construir(int coord_x, int coord_y) {
-    bool es_casillero_construible = this->mapa.se_puede_construir(coord_x, coord_y);
-    bool esta_ocupado = this->mapa.esta_ocupado(coord_x, coord_y);
-    return (es_casillero_construible && !esta_ocupado);
-    
+    return this->mapa.se_puede_construir(coord_x, coord_y) && !this->mapa.esta_ocupado(coord_x, coord_y);
 }
 
 Edificio* Andypolis::construir_edificio(string nombre_edificio, int coord_x, int coord_y){
@@ -253,8 +271,8 @@ Edificio* Andypolis::construir_edificio(string nombre_edificio, int coord_x, int
     else if (nombre_edificio == "obelisco"){
         edificio_creado = new Obelisco(nombre_edificio, coord_x, coord_y);
     }
-    else if (nombre_edificio == "planta electrica"){
-        edificio_creado = new Planta_electrica(nombre_edificio, coord_x, coord_y);
+    else if ((nombre_edificio == "planta electrica") || (nombre_edificio == "planta")){
+        edificio_creado = new Planta_electrica("planta electrica", coord_x, coord_y);
     }
     return edificio_creado;
 }
@@ -304,28 +322,67 @@ void Andypolis::construir_edificio_por_nombre(){
 }
 
 void Andypolis::listar_edificios_construidos() {
+    /*for (int i = 0; i < this->cantidad_edificios; i++){
+        if (this->edificios_disponibles[i]->obtener_construidos()){
+            int* coordenadas = this->edificios_disponibles[i]->obtener_ubicacion();
+            int coord_x = coordenadas[0];
+            int coord_y = coordenadas[1];
+            cout << "--> " << COLOR_VERDE_AGUA << this->edificios_disponibles[i]->obtener_nombre() << COLOR_POR_DEFECTO << endl;
+            cout << "Coordenada X: " << coord_x << endl;
+            cout << "Coordenada Y: " << coord_y << endl;
+            cout << endl;
+        }
+    }*/
 }
 
 void Andypolis::listar_todos_edificios() {
+    for (int i = 0; i < this->cantidad_edificios; i++){
+        this->edificios_disponibles[i]->mostrar_edificio();
+        cout << endl;
+    }
+    
 
 }
-void Andypolis::devolver_mitad_materiales(){
 
+
+void Andypolis::devolver_mitad_materiales(string nombre_edificio){
+    int pos_edificio = posicion_del_edifcio(nombre_edificio);
+    int* materiales_necesarios = obtener_materiales_necesarios(pos_edificio);
+    int piedra_necesaria = materiales_necesarios[0];
+    int madera_necesaria = materiales_necesarios[1];
+    int metal_necesario = materiales_necesarios[2];
+    Material* materiales_actuales = this->inventario.obtener_inventario();
+    for (int i = 0; i < this->inventario.obtener_cantidad_materiales(); i++){
+        if (materiales_actuales[i].obtener_tipo() == "piedra"){
+            materiales_actuales[i].establecer_cantidad(piedra_necesaria / 2);
+        }
+        else if (materiales_actuales[i].obtener_tipo() == "madera"){
+            materiales_actuales[i].establecer_cantidad(madera_necesaria / 2);
+        }
+        else if (materiales_actuales[i].obtener_tipo() == "metal"){
+            materiales_actuales[i].establecer_cantidad(metal_necesario / 2);
+        }
+    }
 }
 
 void Andypolis::demoler_edificio_por_coordenada() {
     int* coordenadas = pedir_coordenadas();
     int coord_x = coordenadas[0];
     int coord_y = coordenadas[1];
-    if(!this->mapa.esta_ocupado(coord_x, coord_y)){
-        cout << COLOR_VERDE_AGUA << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO <<endl;
+    if(this->mapa.coordenadas_fuera_de_rango(coord_x, coord_y)){
+        cout << COLOR_ROJO << "Oops, intentaste acceder a una coordenada fuera de rango, intenta nuevamente" << COLOR_POR_DEFECTO << endl;
     }
-    else{//falta devolver
-        //Edificio* edificio_demolido = this->mapa[coord_x][coord_y]->obtener_edificio();
+    else if(!this->mapa.esta_ocupado(coord_x, coord_y)){
+        cout << COLOR_ROJO << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO <<endl;
+    }
+    else{
+        string edificio_demolido = this->mapa.obtener_elemento(coord_x, coord_y)->obtener_nombre();
+        devolver_mitad_materiales(edificio_demolido);
         Casillero* nuevo_casillero = new Casillero_construible;
         this->mapa.colocar_casillero(coord_x, coord_y, nuevo_casillero);
-        cout << COLOR_VERDE << "El edificio fue demolido statisfactoriamente!" << COLOR_POR_DEFECTO << endl;
+        cout << COLOR_VERDE << edificio_demolido << " fue demolido statisfactoriamente!" << COLOR_POR_DEFECTO << endl;
     }
+    elegir_opcion();
 }
 
 void Andypolis::recolectar_recursos_perdidos() {
@@ -349,9 +406,9 @@ void Andypolis::mostrar_inventario(){
 void Andypolis::consultar_coordenada(){
     int coord_x;
     int coord_y;
-    cout << "Ingrese la coordenada_x(columna): ";
+    cout << "Ingrese la coordenada x(fila): ";
     cin >> coord_x;
-    cout << "Ingrese la coordenada_y(fila): ";
+    cout << "Ingrese la coordenada y(columna): ";
     cin >> coord_y;
     this->mapa.consultar_coordenada(coord_x, coord_y);
     elegir_opcion();
