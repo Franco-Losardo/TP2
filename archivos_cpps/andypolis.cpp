@@ -352,17 +352,12 @@ void Andypolis::devolver_mitad_materiales(string nombre_edificio){
     int madera_necesaria = materiales_necesarios[1];
     int metal_necesario = materiales_necesarios[2];
     Material* materiales_actuales = this->inventario.obtener_inventario();
-    for (int i = 0; i < this->inventario.obtener_cantidad_materiales(); i++){
-        if (materiales_actuales[i].obtener_tipo() == "piedra"){
-            materiales_actuales[i].establecer_cantidad(piedra_necesaria / 2);
-        }
-        else if (materiales_actuales[i].obtener_tipo() == "madera"){
-            materiales_actuales[i].establecer_cantidad(madera_necesaria / 2);
-        }
-        else if (materiales_actuales[i].obtener_tipo() == "metal"){
-            materiales_actuales[i].establecer_cantidad(metal_necesario / 2);
-        }
-    }
+    int pos_piedra = this->inventario.posicion_del_material("piedra");
+    int pos_madera = this->inventario.posicion_del_material("madera");
+    int pos_metal = this->inventario.posicion_del_material("metal");
+    materiales_actuales[pos_piedra].establecer_cantidad(piedra_necesaria / 2);
+    materiales_actuales[pos_madera].establecer_cantidad(madera_necesaria / 2);
+    materiales_actuales[pos_metal].establecer_cantidad(metal_necesario / 2);
 }
 
 void Andypolis::demoler_edificio_por_coordenada() {
