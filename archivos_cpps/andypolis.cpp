@@ -386,7 +386,35 @@ void Andypolis::demoler_edificio_por_coordenada() {
 }
 
 void Andypolis::recolectar_recursos_perdidos() {
-
+    Material* inventario = this->inventario.obtener_inventario();
+    int contador = 0;
+    for (int i = 0; i < this -> cantidad_edificios; i++){
+        if(this->edificios_disponibles[i]->obtener_construidos()){
+            int material = this->edificios_disponibles[i]->brindar_materiales();
+            if(material){
+                if(this->edificios_disponibles[i]->obtener_nombre() == "aserradero"){
+                    int cantidad = this->edificios_disponibles[i]->obtener_construidos();
+                    int posicion = this->inventario.posicion_del_material("madera");
+                    inventario[posicion].establecer_cantidad(material * cantidad);
+                    contador++;
+                }
+                else if(this->edificios_disponibles[i]->obtener_nombre() == "fabrica"){
+                    int cantidad = this->edificios_disponibles[i]->obtener_construidos();
+                    int posicion = this->inventario.posicion_del_material("metal");
+                    inventario[posicion].establecer_cantidad(material * cantidad);
+                    contador++;
+                }
+                else if(this->edificios_disponibles[i]->obtener_nombre() == "mina"){
+                    int cantidad = this->edificios_disponibles[i]->obtener_construidos();
+                    int posicion = this->inventario.posicion_del_material("piedra");
+                    inventario[posicion].establecer_cantidad(material * cantidad);
+                    contador++;
+                }
+            }
+        }
+    }
+    cout << COLOR_VERDE_AGUA << contador << " edificios brindarion materiales. Verifique cuáles brindan" << COLOR_POR_DEFECTO << endl;
+    elegir_opcion();
 }
 
 void Andypolis::lluvia_de_recursos() {

@@ -15,6 +15,8 @@ class Inventario {
 
         Material* obtener_inventario();
 
+        int posicion_del_material(string material);
+
         void redimensionar_inventario(int nueva_longitud);
 
         void mostrar_inventario();

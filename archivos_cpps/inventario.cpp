@@ -55,6 +55,16 @@ Material* Inventario::obtener_inventario() {
     return this -> inventario;
 }
 
+int Inventario::posicion_del_material(string material){
+    int pos = 0;
+    for (int i = 0; i < this->cantidad_materiales; i++){
+        if(this->inventario[i].obtener_tipo() == material){
+            pos = i;
+        }
+    }
+    return pos;
+}
+
 void Inventario::mostrar_inventario() {
     for (int i = 0; i < this -> cantidad_materiales; i++) {
         this -> inventario[i].mostrar_material();

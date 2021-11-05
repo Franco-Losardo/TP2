@@ -18,8 +18,8 @@ class Material{
         Material();
         // Métodos
         
-        // PRE:
-        // POS:
+        // PRE: Recibe un entero
+        // POS: Le suma cantidad al material en cuestion
         void establecer_cantidad(int cantidad);
 
         // PRE: -
