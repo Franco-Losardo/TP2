@@ -40,6 +40,9 @@ class Mapa {
         // POS:
         bool se_puede_construir(int coord_x, int coord_y);
 
+
+        bool coordenadas_fuera_de_rango(int coord_x, int coord_y);
+
         // PRE:
         // POS:
         void consultar_coordenada(int coord_x, int coord_y);

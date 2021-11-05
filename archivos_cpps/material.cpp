@@ -27,7 +27,7 @@ void Material::usar_material(int cantidad_necesaria){
 }
 
 void Material::mostrar_material(){
-    cout << "|" << setw(10) << this -> nombre_material << "|" << setw(10) << this -> cantidad << "|" << endl;
+    cout << "--> Material: " << this -> nombre_material << ", cantidad: " << this -> cantidad << endl;
 }
 
 void Material::saludar(){

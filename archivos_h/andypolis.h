@@ -49,9 +49,13 @@ class Andypolis{
         // POS:
         bool existe_el_edificio(string edificio);
 
+        void agregar_edificio_a_vector(int numero_edificio, string nombre, int piedra, int madera, int metal, int permitidos);
+
         void consultar_coordenada();
 
         void mostrar_mapa();
+
+        void devolver_mitad_materiales();
 
         void mostrar_inventario();
         // PRE:

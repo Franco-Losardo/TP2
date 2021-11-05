@@ -65,6 +65,10 @@ void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x,
     }
 }
 
+bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y){
+    return (coord_x > cantidad_columnas || coord_y > cantidad_filas);
+}
+
 void Mapa::consultar_coordenada(int coord_x, int coord_y) {
     this -> mapa[coord_y][coord_x] -> mostrar();
 }
