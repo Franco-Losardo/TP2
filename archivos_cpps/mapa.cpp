@@ -96,15 +96,25 @@ bool Mapa::se_puede_construir(int coord_x, int coord_y){
 void Mapa::mostrar_mapa(){
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
         for (int columna = 0; columna < this -> cantidad_columnas; columna++) {
+            char tipo = this -> mapa[fila][columna] -> obtener_tipo();
             if (!this -> mapa[fila][columna] -> esta_ocupado()) {
-                cout << this -> mapa[fila][columna] -> obtener_tipo() << ' ';
+                if (tipo == 'C') {
+                    cout << FONDO_GRIS + ' ';
+                }
+                else if (tipo == 'T') {
+                    cout << FONDO_VERDE + ' ';
+                }
+                else {
+                    cout << FONDO_AZUL + ' ';
+                }
             }
             else if (this -> mapa[fila][columna] -> obtener_tipo() == 'T') {
-                cout << this -> mapa[fila][columna] -> obtener_edificio() -> obtener_representacion() << ' ';
+                cout << FONDO_VERDE + this -> mapa[fila][columna] -> obtener_edificio() -> obtener_representacion();
             }
             else {
-                cout << this -> mapa[fila][columna] -> obtener_material() -> obtener_representacion() << ' ';
+                cout << FONDO_GRIS + this -> mapa[fila][columna] -> obtener_material() -> obtener_representacion();
             }
+            cout << COLOR_POR_DEFECTO;
         }
         cout << endl;
     }
