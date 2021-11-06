@@ -22,4 +22,8 @@ const std::string COLOR_POR_DEFECTO = "\e[0m";
 const std::string COLOR_VERDE = "\e[38;5;46m";
 const std::string COLOR_VERDE_AGUA = "\e[38;5;35m";
 const std::string COLOR_MARRON = "\e[38;5;136m";
+const std::string FONDO_AZUL = "\e[48;5;27m";
+const std::string FONDO_VERDE = "\e[48;5;2m";
+const std::string FONDO_GRIS = "\e[48;5;240m";
+
 #endif

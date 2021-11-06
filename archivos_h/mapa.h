@@ -48,11 +48,17 @@ class Mapa {
         void consultar_coordenada(int coord_x, int coord_y);
 
 
-        Edificio* obtener_elemento(int coord_x , int coord_y);
+        Edificio* obtener_edificio_en_casillero(int coord_x , int coord_y);
+
+
+        Casillero* obtener_casillero(int coord_x , int coord_y);
 
         // PRE:
         // POS:
         void mostrar_mapa();
+
+
+        int* obtener_dimensiones();
 
         // PRE:
         // POS:

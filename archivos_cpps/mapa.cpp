@@ -56,21 +56,32 @@ bool Mapa::esta_ocupado(int coord_x, int coord_y){
     return this->mapa[coord_x][coord_y]->esta_ocupado();
 }
 
-Edificio* Mapa::obtener_elemento(int coord_x, int coord_y){
+Edificio* Mapa::obtener_edificio_en_casillero(int coord_x, int coord_y){
     return this->mapa[coord_x][coord_y]->obtener_edificio();
 }
 
+Casillero* Mapa::obtener_casillero(int coord_x, int coord_y){
+    return this->mapa[coord_x][coord_y];
+}
+
 void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y){
-    if (edificio != nullptr){
-        this->mapa[coord_y][coord_x]->usar_casillero(edificio, nullptr);
+    if (edificio){
+        this->mapa[coord_x][coord_y]->usar_casillero(edificio, nullptr);
     }
-    else if (material != nullptr){
-        this->mapa[coord_y][coord_x]->usar_casillero(nullptr, material);
+    else{
+        this->mapa[coord_x][coord_y]->usar_casillero(nullptr, material);
     }
 }
 
 bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y){
     return (coord_x >= cantidad_filas || coord_y >= cantidad_columnas);
+}
+
+int* Mapa::obtener_dimensiones(){
+    int* dimensiones = new int[2];//pido memoria!!!!
+    cantidad_filas = dimensiones[0];
+    cantidad_columnas = dimensiones[1];
+    return dimensiones;
 }
 
 void Mapa::consultar_coordenada(int coord_x, int coord_y) {
@@ -90,10 +101,10 @@ void Mapa::mostrar_mapa(){
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
         for (int columna = 0; columna < this -> cantidad_columnas; columna++) {
             if (!this -> mapa[fila][columna] -> esta_ocupado()) {
-                cout << this -> mapa[fila][columna] -> obtener_tipo() << ' ';
+                cout << this->mapa[fila][columna]->obtener_tipo() << ' ';
             }
             else if (this -> mapa[fila][columna] -> obtener_tipo() == 'T') {
-                cout << this -> mapa[fila][columna] -> obtener_edificio() -> obtener_representacion() << ' ';
+                cout  << this -> mapa[fila][columna] -> obtener_edificio() -> obtener_representacion() << ' ';
             }
             else {
                 cout << this -> mapa[fila][columna] -> obtener_material() -> obtener_representacion() << ' ';

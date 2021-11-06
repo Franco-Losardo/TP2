@@ -91,9 +91,9 @@ void Andypolis::cargar_construidos(){
             nombre += " " + nombre2;
         }
         archivo_ubicaciones >> basura;
-        archivo_ubicaciones >> coord_y;
-        archivo_ubicaciones >> basura;
         archivo_ubicaciones >> coord_x;
+        archivo_ubicaciones >> basura;
+        archivo_ubicaciones >> coord_y;
         archivo_ubicaciones >> basura;
         Edificio* edificio = construir_edificio(nombre, coord_x, coord_y);
         this->mapa.ocupar_casillero(edificio, nullptr, coord_x, coord_y);
@@ -371,7 +371,7 @@ void Andypolis::demoler_edificio_por_coordenada() {
         cout << COLOR_ROJO << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO <<endl;
     }
     else{
-        string edificio_demolido = this->mapa.obtener_elemento(coord_x, coord_y)->obtener_nombre();
+        string edificio_demolido = this->mapa.obtener_edificio_en_casillero(coord_x, coord_y)->obtener_nombre();
         devolver_mitad_materiales(edificio_demolido);
         Casillero* nuevo_casillero = new Casillero_construible;
         this->mapa.colocar_casillero(coord_x, coord_y, nuevo_casillero);
@@ -413,7 +413,23 @@ void Andypolis::recolectar_recursos_producidos() {
 }
 
 void Andypolis::lluvia_de_recursos() {
-
+    /*int piedra_generada = 1 + (rand() % 2);
+    int madera_generada = 0 + (rand() % 2);
+    int metal_generada = 2 + (rand() % 3);
+    int* dimensiones_mapa = this->mapa.obtener_dimensiones();
+    for (int i = 0; i < this->inventario.obtener_cantidad_materiales(); i++){
+        int coord_x = 0 + (rand() % dimensiones_mapa[0]);
+        int coord_y = 0 + (rand() % dimensiones_mapa[1]);
+        if(!this->mapa.esta_ocupado(coord_x, coord_y) && 
+        this->mapa.obtener_casillero(coord_x, coord_y)->obtener_tipo() == 'C'){
+            //aca habria que crear un material y saber cuál o 3, pero en el ultimo 
+            //caso habrica que verificar
+            //que las tres coordenadas sean validas y seria mas quilombo, creo
+            Material* nuevo_material = new Material("piedra", piedra_generada);
+            this->mapa.ocupar_casillero(nullptr, nuevo_material, coord_x, coord_y);
+        }
+    }*/
+    
 }
 
 void Andypolis::mostrar_mapa(){
