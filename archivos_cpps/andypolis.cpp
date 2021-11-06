@@ -175,16 +175,25 @@ int* Andypolis::obtener_materiales_necesarios(int pos_edificio) {
     return materiales_necesarios;
 }
 
+int* Andypolis::obtener_posiciones_de_materiales(){
+    int* posiciones = new int[3];//pido memoria
+    int pos_piedra = this->inventario.posicion_del_material("piedra");
+    int pos_madera = this->inventario.posicion_del_material("madera");
+    int pos_metal = this->inventario.posicion_del_material("metal");
+    posiciones[0] = pos_piedra;
+    posiciones[1] = pos_madera;
+    posiciones[2] = pos_metal;
+    return posiciones;
+}
+
 bool Andypolis::hay_materiales_suficientes(string edificio_a_construir) {
     int pos_edificio = posicion_del_edifcio(edificio_a_construir);
     Material* materiales_actuales = this -> inventario.obtener_inventario();
     int* materiales_necesarios = this -> edificios_disponibles[pos_edificio] -> obtener_materiales_necesarios();
-    int pos_piedra = this->inventario.posicion_del_material("piedra");
-    int pos_madera = this->inventario.posicion_del_material("madera");
-    int pos_metal = this->inventario.posicion_del_material("metal");
-    bool hay_piedra_suficiente = materiales_actuales[pos_piedra].obtener_cantidad() > materiales_necesarios[0];
-    bool hay_madera_suficiente = materiales_actuales[pos_madera].obtener_cantidad() > materiales_necesarios[1];
-    bool hay_metal_suficiente = materiales_actuales[pos_metal].obtener_cantidad() > materiales_necesarios[2];
+    int* posiciones = obtener_posiciones_de_materiales();
+    bool hay_piedra_suficiente = materiales_actuales[posiciones[0]].obtener_cantidad() > materiales_necesarios[0];
+    bool hay_madera_suficiente = materiales_actuales[posiciones[1]].obtener_cantidad() > materiales_necesarios[1];
+    bool hay_metal_suficiente = materiales_actuales[posiciones[2]].obtener_cantidad() > materiales_necesarios[2];
     return hay_piedra_suficiente && hay_madera_suficiente && hay_metal_suficiente;
 }
 
@@ -221,12 +230,10 @@ void Andypolis::actualizar_cant_materiales(int pos_edificio) {
     int madera_necesaria = materiales_necesarios[1];
     int metal_necesario = materiales_necesarios[2];
     Material* materiales_actuales = this -> inventario.obtener_inventario();
-    int pos_piedra = this->inventario.posicion_del_material("piedra");
-    int pos_madera = this->inventario.posicion_del_material("madera");
-    int pos_metal = this->inventario.posicion_del_material("metal");
-    materiales_actuales[pos_piedra].usar_material(piedra_necesaria);
-    materiales_actuales[pos_madera].usar_material(madera_necesaria);
-    materiales_actuales[pos_metal].usar_material(metal_necesario);
+    int* posiciones = obtener_posiciones_de_materiales();
+    materiales_actuales[posiciones[0]].usar_material(piedra_necesaria);
+    materiales_actuales[posiciones[1]].usar_material(madera_necesaria);
+    materiales_actuales[posiciones[2]].usar_material(metal_necesario);
 }
 
 
@@ -310,23 +317,31 @@ void Andypolis::construir_edificio_por_nombre() {
     elegir_opcion();
 }
 
-void Andypolis::listar_edificios_construidos() {
-    int construidos;
-    int** ubicaciones;
-    for (int i = 0; i < this -> cantidad_edificios; i++) {
-        construidos = this -> edificios_disponibles[i] -> obtener_construidos();
-        ubicaciones = this -> edificios_disponibles[i] -> obtener_ubicaciones();
-        if (construidos) {
+void Andypolis::mostrar_ubicaciones(int construidos, int** ubicaciones){
+    for (int j = 0; j < construidos; j++){
+        cout << '(' << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
+    }
+    cout << endl;
+}
+
+void Andypolis::mostrar_construidos(int construidos, int** ubicaciones){
+    for (int i = 0; i < this->cantidad_edificios; i++){
+        construidos = this->edificios_disponibles[i]->obtener_construidos();
+        ubicaciones = this->edificios_disponibles[i]->obtener_ubicaciones();
+        if (construidos){
             cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
-            cout << "--> " << COLOR_VERDE_AGUA << this -> edificios_disponibles[i] -> obtener_nombre() << COLOR_POR_DEFECTO << endl;
-            cout << "Construidos: " << this -> edificios_disponibles[i] -> obtener_construidos() << endl;
+            cout << "--> " << COLOR_VERDE_AGUA << this->edificios_disponibles[i]->obtener_nombre() << COLOR_POR_DEFECTO << endl;
+            cout << "Construidos: " << this->edificios_disponibles[i]->obtener_construidos() << endl;
             cout << "Ubicaciones: ";
         }
-        for (int j = 0; j < construidos; j++) {
-            cout << '(' << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
-        }
-        cout << endl;
+        mostrar_ubicaciones(construidos, ubicaciones);
     }
+}
+
+void Andypolis::listar_edificios_construidos() {
+    int construidos = 0;
+    int** ubicaciones = NULL;
+    mostrar_construidos(construidos, ubicaciones);
     elegir_opcion();
 }
 
@@ -345,59 +360,57 @@ void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     int madera_necesaria = materiales_necesarios[1];
     int metal_necesario = materiales_necesarios[2];
     Material* materiales_actuales = this -> inventario.obtener_inventario();
-    int pos_piedra = this -> inventario.posicion_del_material("piedra");
-    int pos_madera = this -> inventario.posicion_del_material("madera");
-    int pos_metal = this -> inventario.posicion_del_material("metal");
-    materiales_actuales[pos_piedra].establecer_cantidad(piedra_necesaria / 2);
-    materiales_actuales[pos_madera].establecer_cantidad(madera_necesaria / 2);
-    materiales_actuales[pos_metal].establecer_cantidad(metal_necesario / 2);
+    int* posiciones = obtener_posiciones_de_materiales();
+    materiales_actuales[posiciones[0]].establecer_cantidad(piedra_necesaria / 2);
+    materiales_actuales[posiciones[1]].establecer_cantidad(madera_necesaria / 2);
+    materiales_actuales[posiciones[2]].establecer_cantidad(metal_necesario / 2);
+}
+
+void Andypolis::validar_entrada_para_demoler(int coord_x, int coord_y){
+    if (this->mapa.coordenadas_fuera_de_rango(coord_x, coord_y)){
+        cout << COLOR_ROJO << "Oops, intentaste acceder a una coordenada fuera de rango, intenta nuevamente" << COLOR_POR_DEFECTO << endl;
+    }
+    else if (!this->mapa.esta_ocupado(coord_x, coord_y)){
+        cout << COLOR_ROJO << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO << endl;
+    }
+    else{
+        string edificio_demolido = this->mapa.obtener_elemento(coord_x, coord_y)->obtener_nombre();
+        devolver_mitad_materiales(edificio_demolido);
+        Casillero *nuevo_casillero = new Casillero_construible;
+        this->mapa.colocar_casillero(coord_x, coord_y, nuevo_casillero);
+        cout << COLOR_VERDE << edificio_demolido << " fue demolido statisfactoriamente!" << COLOR_POR_DEFECTO << endl;
+    }
 }
 
 void Andypolis::demoler_edificio_por_coordenada() {
     int* coordenadas = pedir_coordenadas();
     int coord_x = coordenadas[0];
     int coord_y = coordenadas[1];
-    if (this -> mapa.coordenadas_fuera_de_rango(coord_x, coord_y)) {
-        cout << COLOR_ROJO << "Oops, intentaste acceder a una coordenada fuera de rango, intenta nuevamente" << COLOR_POR_DEFECTO << endl;
-    }
-    else if (!this -> mapa.esta_ocupado(coord_x, coord_y)) {
-        cout << COLOR_ROJO << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO <<endl;
-    }
-    else{
-        string edificio_demolido = this -> mapa.obtener_elemento(coord_x, coord_y)->obtener_nombre();
-        devolver_mitad_materiales(edificio_demolido);
-        Casillero* nuevo_casillero = new Casillero_construible;
-        this -> mapa.colocar_casillero(coord_x, coord_y, nuevo_casillero);
-        cout << COLOR_VERDE << edificio_demolido << " fue demolido statisfactoriamente!" << COLOR_POR_DEFECTO << endl;
-    }
+    validar_entrada_para_demoler(coord_x, coord_y);
     elegir_opcion();
 }
 
 void Andypolis::recolectar_recursos_producidos() {
     Material* inventario = this -> inventario.obtener_inventario();
+    int* posiciones = obtener_posiciones_de_materiales();
     int contador = 0;
     for (int i = 0; i < this -> cantidad_edificios; i++) {
-        if (this -> edificios_disponibles[i] -> obtener_construidos()) {
+        if (this -> edificios_disponibles[i] -> obtener_construidos() && this -> edificios_disponibles[i] -> brindar_materiales()){
             int material = this -> edificios_disponibles[i] -> brindar_materiales();
-            if (material) {
-                if (this -> edificios_disponibles[i] -> obtener_nombre() == "aserradero") {
-                    int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
-                    int posicion = this -> inventario.posicion_del_material("madera");
-                    inventario[posicion].establecer_cantidad(material * cantidad);
-                    contador++;
-                }
-                else if (this -> edificios_disponibles[i] -> obtener_nombre() == "fabrica") {
-                    int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
-                    int posicion = this -> inventario.posicion_del_material("metal");
-                    inventario[posicion].establecer_cantidad(material * cantidad);
-                    contador++;
-                }
-                else if (this -> edificios_disponibles[i] -> obtener_nombre() == "mina") {
-                    int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
-                    int posicion = this -> inventario.posicion_del_material("piedra");
-                    inventario[posicion].establecer_cantidad(material * cantidad);
-                    contador++;
-                }
+            if (this -> edificios_disponibles[i] -> obtener_nombre() == "aserradero") {
+                int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
+                inventario[posiciones[1]].establecer_cantidad(material * cantidad);
+                contador++;
+            }
+            else if (this -> edificios_disponibles[i] -> obtener_nombre() == "fabrica") {
+                int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
+                inventario[posiciones[2]].establecer_cantidad(material * cantidad);
+                contador++;
+            }
+            else if (this -> edificios_disponibles[i] -> obtener_nombre() == "mina") {
+                int cantidad = this -> edificios_disponibles[i] -> obtener_construidos();
+                inventario[posiciones[0]].establecer_cantidad(material * cantidad);
+                contador++;
             }
         }
     }
@@ -415,18 +428,15 @@ void Andypolis::lluvia_de_recursos() {
     elegir_opcion();
 }
 
-
 void Andypolis::llueve_piedra(int cantidad){
     if(!this->mapa.es_posible_insertar_materiales(cantidad)){
         cout << COLOR_ROJO << "No hay suficientes casilleros disponibles para generar piedras" << COLOR_POR_DEFECTO << endl;
     }
     else{
         Material* nuevos_materiales[cantidad];
-        for (int i = 0; i < cantidad; i++){
-            nuevos_materiales[i] = new Material("piedra", 1);
-        }
         cout << "Se generaron piedras en: " << endl;
         for (int i = 0; i < cantidad; i++){
+            nuevos_materiales[i] = new Material("piedra", 1);
             int *cords = this->mapa.generar_coordenadas_validas();
             this->mapa.ocupar_casillero(0, nuevos_materiales[i], cords[0], cords[1]);
             cout << "(" << cords[0] << "," << cords[1] << ")" << endl;
@@ -441,11 +451,9 @@ void Andypolis::llueve_madera(int cantidad){
     }
     else{
         Material* nuevos_materiales[cantidad];
-        for (int i = 0; i < cantidad; i++){
-            nuevos_materiales[i] = new Material("madera", 1);
-        }
         cout << "Se genero madera en: " << endl;
-        for(int i = 0; i < cantidad; i++){
+        for (int i = 0; i < cantidad; i++){//el for tal vez se pueda modularizar, a mi se me rompio
+            nuevos_materiales[i] = new Material("madera", 1);
             int *cords = this->mapa.generar_coordenadas_validas();
             this->mapa.ocupar_casillero(0, nuevos_materiales[i], cords[0], cords[1]);
             cout << "(" << cords[0] << "," << cords[1] << ")" << endl;
@@ -460,11 +468,9 @@ void Andypolis::llueve_metal(int cantidad){
     }
     else{
         Material* nuevos_materiales[cantidad];
+        cout << "Se generaron metales en: " << endl;
         for (int i = 0; i < cantidad; i++){
             nuevos_materiales[i] = new Material("metal", 1);
-        }
-        cout << "Se generaron metales en: " << endl;
-        for(int i = 0; i < cantidad; i++){
             int *cords = this->mapa.generar_coordenadas_validas();
             this->mapa.ocupar_casillero(0, nuevos_materiales[i], cords[0], cords[1]);
             cout << "(" << cords[0] << "," << cords[1] << ")" << endl;
