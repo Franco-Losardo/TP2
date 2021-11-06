@@ -308,6 +308,7 @@ void Andypolis::listar_edificios_construidos() {
         construidos = this -> edificios_disponibles[i] -> obtener_construidos();
         ubicaciones = this -> edificios_disponibles[i] -> obtener_ubicaciones();
         if (construidos) {
+            cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
             cout << "--> " << COLOR_VERDE_AGUA << this -> edificios_disponibles[i] -> obtener_nombre() << COLOR_POR_DEFECTO << endl;
             cout << "Construidos: " << this -> edificios_disponibles[i] -> obtener_construidos() << endl;
             cout << "Ubicaciones: ";
@@ -317,6 +318,7 @@ void Andypolis::listar_edificios_construidos() {
         }
         cout << endl;
     }
+    elegir_opcion();
 }
 
 void Andypolis::listar_todos_edificios() {
@@ -324,6 +326,7 @@ void Andypolis::listar_todos_edificios() {
         this -> edificios_disponibles[i] -> mostrar_edificio();
         cout << endl;
     }
+    elegir_opcion();
 }
 
 void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
