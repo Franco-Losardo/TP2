@@ -142,6 +142,9 @@ void Mapa::mostrar_mapa(){
 
 Mapa::~Mapa() {
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
+        for (int columna = 0; columna < this -> cantidad_columnas; columna++){
+            delete this->mapa[fila][columna];
+        }
         delete [] this -> mapa[fila];
     }
     delete [] this -> mapa;

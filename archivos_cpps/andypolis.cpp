@@ -538,3 +538,10 @@ void Andypolis::elegir_opcion() {
             break;
     }
 }
+
+Andypolis::~Andypolis(){
+    for(int i = 0; i < this ->cantidad_edificios; i++){
+        delete edificios_disponibles[i];
+    }
+    delete[] edificios_disponibles;
+}

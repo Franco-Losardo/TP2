@@ -188,6 +188,8 @@ class Andypolis{
         // PRE:
         // POS:
         void elegir_opcion();
+
+        ~Andypolis();
 };
 
 #endif
