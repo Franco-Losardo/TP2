@@ -57,19 +57,42 @@ class Andypolis{
         // POS:
         bool existe_el_edificio(string edificio);
 
+        // PRE:
+        // POS:
         void agregar_edificio_a_vector(int numero_edificio, string nombre, int piedra, int madera, int metal, int permitidos);
 
+        // PRE:
+        // POS:
         void consultar_coordenada();
 
+        // PRE:
+        // POS:
         void mostrar_mapa();
 
+        // PRE:
+        // POS:
         void devolver_mitad_materiales(string nombre_edificio);
 
+        // PRE:
+        // POS:
         void cargar_construidos();
 
+        // PRE:
+        // POS:
         void llueve_piedra(int cantidad);
 
+        // PRE:
+        // POS:
+        void llueve_madera(int cantidad);
+
+        // PRE:
+        // POS:
+        void llueve_metal(int cantidad);
+
+        // PRE:
+        // POS:
         void mostrar_inventario();
+        
         // PRE:
         // POS:
         void mostrar_nombres_de_edificios();

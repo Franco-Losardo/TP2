@@ -49,7 +49,7 @@ class Mapa {
 
         bool es_posible_insertar_materiales(int cantidad_a_insertar);
 
-        int** generar_coordenadas_validas(int cantidad_a_generar);
+        int* generar_coordenadas_validas();
 
 
         Edificio* obtener_elemento(int coord_x , int coord_y);
@@ -57,8 +57,6 @@ class Mapa {
         // PRE:
         // POS:
         void mostrar_mapa();
-
-        int* obtener_dimensiones();
 
         // PRE:
         // POS:

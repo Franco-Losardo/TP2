@@ -65,44 +65,18 @@ bool Mapa::es_posible_insertar_materiales(int cantidad_a_insertar){
     return contador >= cantidad_a_insertar;
 }
 
-int** Mapa::generar_coordenadas_validas(int cantidad_a_generar){
-    int **coordenadas_validas = new int *[cantidad_a_generar];
-    int generado = 0;
-    int pos_subarreglo = 0;
-    while (generado != cantidad_a_generar){
+int* Mapa::generar_coordenadas_validas(){
+    int* coordenadas_validas = 0;
+    while (!coordenadas_validas){
         int coord_x = (rand() % this -> cantidad_filas);
         int coord_y = (rand() % this -> cantidad_columnas);
         if (this->mapa[coord_x][coord_y]->obtener_tipo() == 'C' && !this->mapa[coord_x][coord_y]->esta_ocupado()){
-            coordenadas_validas[pos_subarreglo] = new int[2];
-            int coordenadas[] = {coord_x, coord_y};
-            coordenadas_validas[pos_subarreglo][0] = coordenadas[0];
-            coordenadas_validas[pos_subarreglo][1] = coordenadas[1];
-            generado++;
-            pos_subarreglo++;
+            coordenadas_validas = new int[2];
+            coordenadas_validas[0] = coord_x;
+            coordenadas_validas[1] = coord_y;
         }
-    }
-    for (int i = 0; i < cantidad_a_generar; i++){
-        cout << coordenadas_validas[i][0] << ' ' << coordenadas_validas[i][1] << endl;
     }
     return coordenadas_validas;
-    /*int** coordenadas_validas = new int*[cantidad_a_generar];
-    for (int i = 0; i < cantidad_a_generar; i++){
-        coordenadas_validas[i] = new int[2];
-    }
-    int generado = 0;
-    int pos_subarreglo = 0;
-    while(generado != cantidad_a_generar){
-        int coord_x = (rand() % this -> cantidad_filas);
-        int coord_y = (rand() % this -> cantidad_columnas);
-        if (this->mapa[coord_x][coord_y]->obtener_tipo() == 'C' && !this->mapa[coord_x][coord_y]->esta_ocupado()){
-            int coordenadas[] = {coord_x, coord_y};
-            coordenadas_validas[pos_subarreglo][0] = coordenadas[0];
-            coordenadas_validas[pos_subarreglo][1] = coordenadas[1];
-            generado++;
-            pos_subarreglo;
-        }
-    }
-    return coordenadas_validas;*/
 }
 
 bool Mapa::esta_ocupado(int coord_x, int coord_y){
@@ -120,13 +94,6 @@ void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x,
     else{
         this->mapa[coord_x][coord_y]->usar_casillero(nullptr, material);
     }
-}
-
-int* Mapa::obtener_dimensiones(){
-    int* dimensiones = new int[2]; //pido memoria!!!!
-    cantidad_filas = dimensiones[0];
-    cantidad_columnas = dimensiones[1];
-    return dimensiones;
 }
 
 bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y){
@@ -177,6 +144,5 @@ Mapa::~Mapa() {
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
         delete [] this -> mapa[fila];
     }
-
     delete [] this -> mapa;
 }
