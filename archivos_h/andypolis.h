@@ -67,6 +67,8 @@ class Andypolis{
 
         void cargar_construidos();
 
+        void llueve_piedra(int cantidad);
+
         void mostrar_inventario();
         // PRE:
         // POS:

@@ -47,6 +47,10 @@ class Mapa {
         // POS:
         void consultar_coordenada(int coord_x, int coord_y);
 
+        bool es_posible_insertar_materiales(int cantidad_a_insertar);
+
+        int** generar_coordenadas_validas(int cantidad_a_generar);
+
 
         Edificio* obtener_elemento(int coord_x , int coord_y);
 

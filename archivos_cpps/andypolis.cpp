@@ -98,6 +98,8 @@ void Andypolis::cargar_construidos() {
         Edificio* edificio = crear_edificio(nombre, coord_x, coord_y);
         this -> mapa.ocupar_casillero(edificio, nullptr, coord_x, coord_y);
     }
+    //Material* d = new Material("piedra",2);
+    //this -> mapa.ocupar_casillero(0, d, 7, 9);
     archivo_ubicaciones.close();
 }
 
@@ -397,10 +399,11 @@ void Andypolis::recolectar_recursos_producidos() {
 }
 
 void Andypolis::lluvia_de_recursos() {
+    int **cords = this->mapa.generar_coordenadas_validas(3);
     /*int piedra_generada = 1 + (rand() % 2);
     int madera_generada = 0 + (rand() % 2);
     int metal_generada = 2 + (rand() % 3);
-    int* dimensiones_mapa = this->mapa.obtener_dimensiones();
+    int* dimensiones_mapa = this -> mapa.obtener_dimensiones();
     for (int i = 0; i < this->inventario.obtener_cantidad_materiales(); i++){
         int coord_x = 0 + (rand() % dimensiones_mapa[0]);
         int coord_y = 0 + (rand() % dimensiones_mapa[1]);
@@ -413,6 +416,15 @@ void Andypolis::lluvia_de_recursos() {
             this->mapa.ocupar_casillero(nullptr, nuevo_material, coord_x, coord_y);
         }
     }*/
+}
+
+
+void Andypolis::llueve_piedra(int cantidad){
+    Material* nuevos_materiales[cantidad];
+    for (int i = 0; i < cantidad; i++){
+        nuevos_materiales[i] = new Material("piedra", 1);
+    }
+    
 }
 
 void Andypolis::mostrar_mapa() {

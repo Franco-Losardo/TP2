@@ -1,6 +1,7 @@
 #include "../archivos_h/mapa.h"
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
 
@@ -50,6 +51,58 @@ void Mapa::cargar_mapa() {
 
 void Mapa::colocar_casillero(int coord_x, int coord_y, Casillero* casillero){
     this -> mapa[coord_x][coord_y] = casillero;
+}
+
+bool Mapa::es_posible_insertar_materiales(int cantidad_a_insertar){
+    int contador = 0;
+    for (int fila = 0; fila < this -> cantidad_filas; fila++){
+        for (int columna = 0; columna < this -> cantidad_columnas; columna++){
+            if(this->mapa[fila][columna]->obtener_tipo() == 'C' && !this -> mapa[fila][columna]->esta_ocupado()){
+                contador++;
+            }
+        }
+    }
+    return contador >= cantidad_a_insertar;
+}
+
+int** Mapa::generar_coordenadas_validas(int cantidad_a_generar){
+    int **coordenadas_validas = new int *[cantidad_a_generar];
+    int generado = 0;
+    int pos_subarreglo = 0;
+    while (generado != cantidad_a_generar){
+        int coord_x = (rand() % this -> cantidad_filas);
+        int coord_y = (rand() % this -> cantidad_columnas);
+        if (this->mapa[coord_x][coord_y]->obtener_tipo() == 'C' && !this->mapa[coord_x][coord_y]->esta_ocupado()){
+            coordenadas_validas[pos_subarreglo] = new int[2];
+            int coordenadas[] = {coord_x, coord_y};
+            coordenadas_validas[pos_subarreglo][0] = coordenadas[0];
+            coordenadas_validas[pos_subarreglo][1] = coordenadas[1];
+            generado++;
+            pos_subarreglo++;
+        }
+    }
+    for (int i = 0; i < cantidad_a_generar; i++){
+        cout << coordenadas_validas[i][0] << ' ' << coordenadas_validas[i][1] << endl;
+    }
+    return coordenadas_validas;
+    /*int** coordenadas_validas = new int*[cantidad_a_generar];
+    for (int i = 0; i < cantidad_a_generar; i++){
+        coordenadas_validas[i] = new int[2];
+    }
+    int generado = 0;
+    int pos_subarreglo = 0;
+    while(generado != cantidad_a_generar){
+        int coord_x = (rand() % this -> cantidad_filas);
+        int coord_y = (rand() % this -> cantidad_columnas);
+        if (this->mapa[coord_x][coord_y]->obtener_tipo() == 'C' && !this->mapa[coord_x][coord_y]->esta_ocupado()){
+            int coordenadas[] = {coord_x, coord_y};
+            coordenadas_validas[pos_subarreglo][0] = coordenadas[0];
+            coordenadas_validas[pos_subarreglo][1] = coordenadas[1];
+            generado++;
+            pos_subarreglo;
+        }
+    }
+    return coordenadas_validas;*/
 }
 
 bool Mapa::esta_ocupado(int coord_x, int coord_y){
