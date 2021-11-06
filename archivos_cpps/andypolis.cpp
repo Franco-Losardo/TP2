@@ -16,7 +16,7 @@ Andypolis::Andypolis() {
 
 void Andypolis::guardar_y_salir() {
     this -> inventario.guardar_inventario();
-    guardar_edificios();
+    this -> guardar_edificios();
 }
 
 void Andypolis::agregar_edificio_a_vector(int numero_edificio, string nombre, int piedra, int madera, int metal, int permitidos) {
@@ -139,6 +139,15 @@ int Andypolis::pedir_opcion() {
 }
 
 void Andypolis::guardar_edificios() {
+    ofstream archivo(RUTA_UBICACIONES);
+    int** ubicaciones = 0;
+    for (int i = 0; i < this -> cantidad_edificios; i++) {
+        ubicaciones = this -> edificios_disponibles[i] -> obtener_ubicaciones();
+        for (int j = 0; j < this -> edificios_disponibles[i] -> obtener_construidos(); j++) {
+            archivo << this -> edificios_disponibles[i] -> obtener_nombre();
+            archivo << " (" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ')' << endl; 
+        }
+    }   
 }
 
 bool Andypolis::existe_el_edificio(string edificio) {
