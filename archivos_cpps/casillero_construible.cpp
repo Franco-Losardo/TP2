@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Casillero_construible::Casillero_construible() {}
+Casillero_construible::Casillero_construible() {
+    this -> tipo = 'T';
+}
 
 void Casillero_construible::usar_casillero(Edificio* edificio, Material* material){
     this -> edificio = edificio;
@@ -13,7 +15,7 @@ bool Casillero_construible::esta_ocupado() {
 }
 
 char Casillero_construible::obtener_tipo() {
-    return 'T';
+    return this -> tipo;
 }
 
 Edificio* Casillero_construible::obtener_edificio() {

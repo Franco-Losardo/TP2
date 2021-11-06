@@ -2,7 +2,9 @@
 
 using namespace std;
 
-Casillero_transitable::Casillero_transitable() {}
+Casillero_transitable::Casillero_transitable() {
+    this -> tipo = 'C';
+}
 
 bool Casillero_transitable::esta_ocupado() {
     return this -> material != 0;
@@ -13,7 +15,7 @@ void Casillero_transitable::usar_casillero(Edificio* edificio, Material* materia
 }
 
 char Casillero_transitable::obtener_tipo() {
-    return 'C';
+    return this -> tipo;
 }
 
 Material* Casillero_transitable::obtener_material() {

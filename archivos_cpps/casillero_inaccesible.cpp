@@ -3,10 +3,14 @@
 
 using namespace std;
 
+Casillero_inaccesible::Casillero_inaccesible(){
+    this -> tipo = 'L';
+}
+
 void Casillero_inaccesible::mostrar(){
     cout << COLOR_ROJO << "Soy un casillero inaccesible y no es posible construir aqui" << COLOR_POR_DEFECTO << endl;
 }
 
 char Casillero_inaccesible::obtener_tipo(){
-    return 'L';
+    return this -> tipo;
 }

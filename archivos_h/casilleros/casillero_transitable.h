@@ -6,6 +6,7 @@
 class Casillero_transitable: public Casillero {
     private:
         Material* material;
+        char tipo;
     public:
         // PRE:
         // POS:
