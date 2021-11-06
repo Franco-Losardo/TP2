@@ -1,0 +1,3 @@
+piedra 390
+madera 305
+metal 440
