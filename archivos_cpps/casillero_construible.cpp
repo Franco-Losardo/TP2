@@ -32,3 +32,9 @@ void Casillero_construible::mostrar() {
         cout << COLOR_VERDE << "Soy un casillero construible y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }
+
+Casillero_construible::~Casillero_construible(){
+    if(this -> edificio){
+        delete this -> edificio;
+    }
+}

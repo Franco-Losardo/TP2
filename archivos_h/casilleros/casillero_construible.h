@@ -32,6 +32,10 @@ class Casillero_construible: public Casillero {
         // PRE:
         // POS:
         void mostrar();
+
+        // PRE:
+        // POS
+        ~Casillero_construible();
 };
 
 #endif

@@ -60,7 +60,7 @@ class Edificio{
 
         // PRE:
         // POS:
-        ~Edificio();
+        virtual ~Edificio();
 };
 
 #endif

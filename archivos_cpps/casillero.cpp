@@ -21,3 +21,5 @@ Material* Casillero::obtener_material() {
 bool Casillero::esta_ocupado() {
     return false;
 }
+
+Casillero::~Casillero(){}

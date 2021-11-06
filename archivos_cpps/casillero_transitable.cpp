@@ -32,3 +32,8 @@ void Casillero_transitable::mostrar() {
         cout << COLOR_VERDE << "Soy un casillero transitable y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }
+Casillero_transitable::~Casillero_transitable(){
+    if(this -> material){
+        delete material;
+    }
+}

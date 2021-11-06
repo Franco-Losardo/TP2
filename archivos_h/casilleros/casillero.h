@@ -41,6 +41,10 @@ class Casillero{
         // PRE:
         // POS:
         virtual Material* obtener_material();
+
+        // PRE:
+        // POS:
+        virtual ~Casillero();
 };
 
 #endif

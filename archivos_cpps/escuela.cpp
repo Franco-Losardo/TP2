@@ -64,4 +64,5 @@ Escuela::~Escuela() {
     }
 
     delete [] this -> ubicaciones;
+    cout << "entro destructor calse escuela" << endl;
 }

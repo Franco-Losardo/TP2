@@ -63,4 +63,5 @@ Aserradero::~Aserradero() {
     }
 
     delete [] this -> ubicaciones;
+    cout << "entro destructor calse aserradero" << endl;
 }

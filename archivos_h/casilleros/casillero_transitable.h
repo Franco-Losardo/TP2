@@ -31,6 +31,10 @@ class Casillero_transitable: public Casillero {
         // PRE:
         // POS:
         void mostrar();
+
+        // PRE: 
+        // POS:
+        ~Casillero_transitable();
 };
 
 #endif

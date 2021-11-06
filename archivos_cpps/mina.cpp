@@ -65,4 +65,5 @@ Mina::~Mina() {
     }
 
     delete [] this -> ubicaciones;
+    cout << "entro destructor calse mina" << endl;
 }
