@@ -257,7 +257,7 @@ Edificio* Andypolis::crear_edificio(string nombre_edificio, int coord_x, int coo
     return edificio_creado;
 }
 
-void Andypolis::construir_edificio_por_nombre() {
+string Andypolis::pedir_nombre_de_edificio(){
     string edificio_a_construir;
     cout << "Edificios disponibles para construir" << endl;
     cout << COLOR_VERDE_AGUA << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
@@ -265,39 +265,48 @@ void Andypolis::construir_edificio_por_nombre() {
     cout << "Ingrese el nombre del edificio que desea construir: ";
     getline(cin.ignore(), edificio_a_construir);
     transform(edificio_a_construir.begin(), edificio_a_construir.end(), edificio_a_construir.begin(), ::tolower); //convierte la entrada a minuscula
-    if (!existe_el_edificio(edificio_a_construir)) {
+    return edificio_a_construir;
+}
+
+void Andypolis::validar_nombre_de_edificio(string edificio_a_construir){
+    if (!existe_el_edificio(edificio_a_construir)){
         cout << COLOR_ROJO << "El edificio ingresado no existe, intente nuevamente" << COLOR_POR_DEFECTO << endl;
     }
-    else if (!hay_materiales_suficientes(edificio_a_construir)) {
+    else if (!hay_materiales_suficientes(edificio_a_construir)){
         cout << COLOR_ROJO << "No hay materiales suficientes para construir " << edificio_a_construir << COLOR_POR_DEFECTO << endl;
     }
-    else if (se_alcanzo_maximo_permitido(edificio_a_construir)) {
+    else if (se_alcanzo_maximo_permitido(edificio_a_construir)){
         cout << COLOR_ROJO << "Ya estan construidos la cantidad maxima de " << edificio_a_construir << " posibles" << COLOR_POR_DEFECTO << endl;
     }
     else{
         bool confirmacion = pedir_confirmacion(edificio_a_construir);
-        if (!confirmacion) {
+        if (!confirmacion){
             cout << COLOR_VERDE << "Operacion cancelada" << COLOR_POR_DEFECTO << endl;
         }
         else{
-            int* coordenadas = pedir_coordenadas();
+            int *coordenadas = pedir_coordenadas();
             int coord_x = coordenadas[0];
             int coord_y = coordenadas[1];
-            if (this -> mapa.coordenadas_fuera_de_rango(coord_x, coord_y)) {
+            if (this->mapa.coordenadas_fuera_de_rango(coord_x, coord_y)){
                 cout << COLOR_ROJO << "Las coordenadas son inválidas, intente nuevamente" << COLOR_POR_DEFECTO << endl;
             }
-            else if (!se_puede_construir(coord_x, coord_y)) {
+            else if (!se_puede_construir(coord_x, coord_y)){
                 cout << COLOR_ROJO << "No es posible construir en esas coordenadas" << COLOR_POR_DEFECTO << endl;
             }
             else{
                 int pos_edificio = posicion_del_edifcio(edificio_a_construir);
-                Edificio* nuevo_edificio = crear_edificio(edificio_a_construir, coord_x, coord_y);
+                Edificio *nuevo_edificio = crear_edificio(edificio_a_construir, coord_x, coord_y);
                 actualizar_cant_materiales(pos_edificio);
-                this -> mapa.ocupar_casillero(nuevo_edificio, nullptr, coord_x, coord_y);
+                this->mapa.ocupar_casillero(nuevo_edificio, 0, coord_x, coord_y);
                 cout << COLOR_VERDE << "El edificio fue construido statisfactoriamente" << COLOR_POR_DEFECTO << endl;
             }
         }
     }
+}
+
+void Andypolis::construir_edificio_por_nombre() {
+    string edificio_a_construir = pedir_nombre_de_edificio();
+    validar_nombre_de_edificio(edificio_a_construir);
     elegir_opcion();
 }
 

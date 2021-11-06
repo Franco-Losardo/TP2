@@ -141,6 +141,14 @@ class Andypolis{
         // POS:
         void construir_edificio_por_nombre();
 
+        // PRE:
+        // POS:
+        string pedir_nombre_de_edificio();
+
+        // PRE:
+        // POS:
+        void validar_nombre_de_edificio(string edificio_a_construir);
+
         // PRE: -
         // POS: Muetra por pantalla la lista de edificios construidos
         void listar_edificios_construidos();
