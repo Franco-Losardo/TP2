@@ -3,9 +3,6 @@
 #include <cstdlib>
 #include "../archivos_h/andypolis.h"
 
-
-
-////HOLAAAAAA
 using namespace std;
 
 Andypolis::Andypolis() {
