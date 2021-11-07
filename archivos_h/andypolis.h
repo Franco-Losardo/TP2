@@ -122,8 +122,8 @@ class Andypolis{
         bool se_alcanzo_maximo_permitido(string edificio_a_construir);
 
         // PRE: 
-        // POS: le pide al usuario que ingrese una opcion y la devuelve
-        int pedir_opcion();
+        // POS: muestra el menú de opciones
+        void mostrar_menu();
 
         // PRE:
         // POS: construye el edificio

@@ -321,7 +321,7 @@ void Andypolis::listar_todos_edificios() {
 }
 
 void Andypolis::demoler_edificio_por_coordenada() {
-    int *coordenadas = pedir_coordenadas(); //liberamos?
+    int* coordenadas = pedir_coordenadas(); //liberamos?
     int coordenada_x = coordenadas[0];
     int coordenada_y = coordenadas[1];
     validar_entrada_para_demoler(coordenada_x, coordenada_y);
@@ -460,8 +460,7 @@ void Andypolis::guardar_y_salir() {
     this -> guardar_edificios();
 }
 
-int Andypolis::pedir_opcion() {
-    int opcion_ingresada = 0;
+void Andypolis::mostrar_menu() {
     cout << endl;
     cout << "𝕄𝔼ℕ𝕌" << endl;
     cout << "╔═══════════════════════════════════════════╗" << endl;
@@ -485,14 +484,14 @@ int Andypolis::pedir_opcion() {
     cout << "║                                           ║" << endl;
     cout << "║ 10. Guardar y salir  " << LOGO_GUARDAR << "                   ║" << endl;
     cout << "╚═══════════════════════════════════════════╝" << endl;
-    cout << "Ingrese la opcion deseada: ";
-    cin >> opcion_ingresada;
-    system(CLR_SCREEN);
-    return opcion_ingresada;
 }
 
 void Andypolis::elegir_opcion() {
-    int opcion_ingresada = pedir_opcion();
+    this -> mostrar_menu();
+    int opcion_ingresada;
+    cout << "Ingrese la opcion deseada: ";
+    cin >> opcion_ingresada;
+    system(CLR_SCREEN);
     switch (opcion_ingresada) {
         case 1:
             construir_edificio_por_nombre();
