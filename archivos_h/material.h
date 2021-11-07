@@ -38,11 +38,11 @@ class Material{
         void mostrar_material();
 
         // PRE:
-        // POS:
+        // POS: muestra por pantalla el saludo del material
         void saludar();
 
         // PRE:
-        // POS:
+        // POS: devuelve la representacion del material
         char obtener_representacion();
 };
 
