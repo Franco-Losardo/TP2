@@ -8,16 +8,15 @@ class Casillero_inaccesible: public Casillero {
         char tipo;
 
     public:
-        // PRE:
-        // POS:
+        // Constructor
         Casillero_inaccesible();
-        
+
         // PRE:
-        // POS:
+        // POS: devuelve el tipo del casillero
         char obtener_tipo();
 
         // PRE:
-        // POS:
+        // POS: muestra por pantalla el mensaje del del casillero
         void mostrar();
 };
 

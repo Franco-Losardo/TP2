@@ -14,13 +14,13 @@ class Casillero{
         // POS:
         Casillero();
 
-        // PRE:
-        // POS:
-        Casillero(int coordenada_x, int coordenada_y);
+        // PRE: recibe dos coordenadas
+        // POS: crea un casillero en las coordenadas recibidas
+        Casillero(int coord_x, int coord_y);
 
         // PRE:
         // POS:
-        virtual void usar_casillero(Edificio *edificio, Material *material);
+        virtual void usar_casillero(Edificio* edificio, Material* material);
 
         // PRE:
         // POS:

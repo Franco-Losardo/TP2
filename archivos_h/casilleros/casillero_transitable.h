@@ -8,32 +8,30 @@ class Casillero_transitable: public Casillero {
         Material* material;
         char tipo;
     public:
-        // PRE:
-        // POS:
+        // Construcor
         Casillero_transitable();
 
-        // PRE:
-        // POS:
+        // PRE: recibe un puntero a edifcio y a material
+        // POS: ubica en el casillero el puntero a material
         void usar_casillero(Edificio* edificio, Material* material);
 
         // PRE:
-        // POS:
+        // POS: devuelve verdadero en caso que el casillero este ocupado, falso de lo contrario
         bool esta_ocupado();
 
         // PRE:
-        // POS:
+        // POS: devuelve el tipo del casillero
         char obtener_tipo();
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero al material que se encuentra en el casillero
         Material* obtener_material();
 
         // PRE:
-        // POS:
+        // POS: muestra por pantalla el mensaje del del casillero
         void mostrar();
 
-        // PRE: 
-        // POS:
+        // Destructor
         ~Casillero_transitable();
 };
 
