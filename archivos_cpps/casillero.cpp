@@ -3,11 +3,6 @@
 
 Casillero::Casillero() {}
 
-Casillero::Casillero(int coord_x, int coord_y){
-    this -> coord_x = coord_x;
-    this -> coord_y = coord_y;
-}
-
 void Casillero::usar_casillero(Edificio *edificio, Material *material) {}
 
 Edificio* Casillero::obtener_edificio() {

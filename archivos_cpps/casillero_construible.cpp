@@ -2,8 +2,10 @@
 
 using namespace std;
 
-Casillero_construible::Casillero_construible() {
-    this -> tipo = 'T';
+Casillero_construible::Casillero_construible() {}
+
+Casillero_construible::Casillero_construible(char tipo) {
+    this -> tipo = tipo;
 }
 
 void Casillero_construible::usar_casillero(Edificio* edificio, Material* material) {

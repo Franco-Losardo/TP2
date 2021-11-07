@@ -9,7 +9,7 @@ class Casillero_transitable: public Casillero {
         char tipo;
     public:
         // Construcor
-        Casillero_transitable();
+        Casillero_transitable(char tipo);
 
         // PRE: recibe un puntero a edifcio y a material
         // POS: ubica en el casillero el puntero a material

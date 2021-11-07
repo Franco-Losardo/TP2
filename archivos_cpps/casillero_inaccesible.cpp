@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Casillero_inaccesible::Casillero_inaccesible(){
-    this -> tipo = 'L';
+Casillero_inaccesible::Casillero_inaccesible(char tipo){
+    this -> tipo = tipo;
 }
 
 void Casillero_inaccesible::mostrar(){

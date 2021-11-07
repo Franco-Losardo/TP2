@@ -10,6 +10,7 @@ class Casillero_construible: public Casillero {
 
     public:
         // Constructor
+        Casillero_construible(char tipo);
         Casillero_construible();
 
         // PRE: recibe un puntero a edifcio y a material

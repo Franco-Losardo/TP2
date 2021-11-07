@@ -366,6 +366,7 @@ void Andypolis::consultar_coordenada() {
     cin >> coordenada_x;
     cout << "Ingrese la coordenada y(columna): ";
     cin >> coordenada_y;
+    cout << endl;
     this -> mapa.consultar_coordenada(coordenada_x, coordenada_y);
 }
 
@@ -474,7 +475,7 @@ int Andypolis::pedir_opcion() {
     cout << "10. Guardar y salir" << endl << endl;
     cout << "Ingrese la opcion deseada: ";
     cin >> opcion_ingresada;
-    //system(CLR_SCREEN);
+    system(CLR_SCREEN);
     return opcion_ingresada;
 }
 
@@ -510,13 +511,14 @@ void Andypolis::elegir_opcion() {
             break;
         case 10:
             guardar_y_salir();
-            exit(1);
             break;
         default:
             cout << COLOR_ROJO << "Oops, opcion incorrecta. Intenta nuevamente" << COLOR_POR_DEFECTO << endl;
             break;
     }
-    this -> elegir_opcion();
+    if(opcion_ingresada != 10){
+        this -> elegir_opcion();
+    }
 }
 
 Andypolis::~Andypolis() {

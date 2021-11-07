@@ -2,8 +2,8 @@
 
 using namespace std;
 
-Casillero_transitable::Casillero_transitable() {
-    this -> tipo = 'C';
+Casillero_transitable::Casillero_transitable(char tipo) {
+    this -> tipo = tipo;
 }
 
 bool Casillero_transitable::esta_ocupado() {

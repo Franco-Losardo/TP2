@@ -5,10 +5,6 @@
 #include "../edificios.h"
 
 class Casillero{
-    protected:
-        int coord_x;
-        int coord_y;
-
     public:
         // PRE:
         // POS:
@@ -16,7 +12,7 @@ class Casillero{
 
         // PRE: recibe dos coordenadas
         // POS: crea un casillero en las coordenadas recibidas
-        Casillero(int coord_x, int coord_y);
+        //Casillero(int coord_x, int coord_y);
 
         // PRE:
         // POS:

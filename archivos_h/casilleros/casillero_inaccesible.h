@@ -9,7 +9,7 @@ class Casillero_inaccesible: public Casillero {
 
     public:
         // Constructor
-        Casillero_inaccesible();
+        Casillero_inaccesible(char tipo);
 
         // PRE:
         // POS: devuelve el tipo del casillero

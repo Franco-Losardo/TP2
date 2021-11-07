@@ -36,13 +36,13 @@ void Mapa::cargar_mapa() {
         for (int columna = 0; columna < this -> cantidad_columnas; columna++) {
             archivo >> caracter;
             if (caracter == 'T') {
-                this -> mapa[fila][columna] = new Casillero_construible;
+                this -> mapa[fila][columna] = new Casillero_construible(caracter);
             }
             else if (caracter == 'C') {
-                this -> mapa[fila][columna] = new Casillero_transitable;
+                this -> mapa[fila][columna] = new Casillero_transitable(caracter);
             }
             else if (caracter == 'L'){
-                this -> mapa[fila][columna] = new Casillero_inaccesible;
+                this -> mapa[fila][columna] = new Casillero_inaccesible(caracter);
             }
         }
     }
@@ -89,10 +89,10 @@ Edificio* Mapa::obtener_elemento(int coord_x, int coord_y){
 
 void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y){
     if (edificio){
-        this -> mapa[coord_x][coord_y] -> usar_casillero(edificio, nullptr);
+        this -> mapa[coord_x][coord_y] -> usar_casillero(edificio, 0);
     }
     else{
-        this -> mapa[coord_x][coord_y] -> usar_casillero(nullptr, material);
+        this -> mapa[coord_x][coord_y] -> usar_casillero(0, material);
     }
 }
 
