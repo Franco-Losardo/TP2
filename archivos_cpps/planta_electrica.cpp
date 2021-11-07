@@ -56,8 +56,10 @@ void Planta_electrica::mostrar_saludo() {
 Planta_electrica::~Planta_electrica() {
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = nullptr;
     }
 
     delete [] this -> ubicaciones;
+    this -> ubicaciones = nullptr;
     cout << "PLANTA ELECTRICA" << endl;
 }

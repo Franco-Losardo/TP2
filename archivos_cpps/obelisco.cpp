@@ -56,8 +56,10 @@ void Obelisco::mostrar_saludo() {
 Obelisco::~Obelisco() {
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = nullptr;
     }
 
     delete [] this -> ubicaciones;
+    this -> ubicaciones = nullptr;
     cout << "OBELISCO" << endl;
 }

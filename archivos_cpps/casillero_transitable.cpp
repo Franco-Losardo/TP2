@@ -34,7 +34,8 @@ void Casillero_transitable::mostrar() {
 }
 Casillero_transitable::~Casillero_transitable() {
     if(this -> material) {
-        delete material;
+        delete this -> material;
+        this -> material = nullptr;
     }
     cout << "CASILLERO TRANSITABLE" << endl;
 }

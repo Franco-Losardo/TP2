@@ -74,5 +74,6 @@ void Inventario::mostrar_inventario() {
 
 Inventario::~Inventario() {
     delete [] this -> inventario;
+    this -> inventario = nullptr;
     cout << "INVENTARIO" << endl;
 }

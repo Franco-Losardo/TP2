@@ -38,6 +38,7 @@ void Casillero_construible::mostrar() {
 Casillero_construible::~Casillero_construible() {
     if (this -> edificio) {
         delete this -> edificio;
+        this -> edificio = nullptr;
     }
     cout << "CASILLERO CONSTRUIBLE" << endl;
 }

@@ -321,7 +321,7 @@ void Andypolis::listar_todos_edificios() {
 }
 
 void Andypolis::demoler_edificio_por_coordenada() {
-    int* coordenadas = pedir_coordenadas();
+    int *coordenadas = pedir_coordenadas(); //liberamos?
     int coordenada_x = coordenadas[0];
     int coordenada_y = coordenadas[1];
     validar_entrada_para_demoler(coordenada_x, coordenada_y);
@@ -344,7 +344,7 @@ void Andypolis::validar_entrada_para_demoler(int coordenada_x, int coordenada_y)
 
 void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     int pos_edificio = posicion_del_edifcio(nombre_edificio);
-    int* materiales_necesarios = obtener_materiales_necesarios(pos_edificio);
+    int* materiales_necesarios = obtener_materiales_necesarios(pos_edificio);//liberamos?
     int piedra_necesaria = materiales_necesarios[0];
     int madera_necesaria = materiales_necesarios[1];
     int metal_necesario = materiales_necesarios[2];
@@ -376,7 +376,7 @@ void Andypolis::mostrar_inventario() {
 
 void Andypolis::recolectar_recursos_producidos() {
     Material* inventario = this -> inventario.obtener_inventario();
-    int* posiciones = obtener_posiciones_de_materiales();
+    int* posiciones = obtener_posiciones_de_materiales();//liberamos?
     int contador = 0;
     for (int i = 0; i < this -> cantidad_edificios; i++) {
         if (this -> edificios_disponibles[i] -> obtener_construidos() && this -> edificios_disponibles[i] -> brindar_materiales()) {
@@ -523,8 +523,10 @@ void Andypolis::elegir_opcion() {
 
 Andypolis::~Andypolis() {
     for(int i = 0; i < this ->cantidad_edificios; i++) {
-        delete edificios_disponibles[i];
+        delete this -> edificios_disponibles[i];
+        this -> edificios_disponibles[i] = nullptr;
     }
-    delete [] edificios_disponibles;
+    delete [] this -> edificios_disponibles;
+    this -> edificios_disponibles = nullptr;
     cout << "ANDYPOLIS" << endl;
 }

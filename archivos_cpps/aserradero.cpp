@@ -54,8 +54,11 @@ void Aserradero::mostrar_saludo() {
 Aserradero::~Aserradero() {
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = nullptr;
     }
 
     delete [] this -> ubicaciones;
+    this -> ubicaciones = nullptr;
+
     cout << "ASERRADERO" << endl;
 }

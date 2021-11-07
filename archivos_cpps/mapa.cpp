@@ -71,7 +71,7 @@ int* Mapa::generar_coordenadas_validas() {
         int coord_x = (rand() % this -> cantidad_filas);
         int coord_y = (rand() % this -> cantidad_columnas);
         if (this -> mapa[coord_x][coord_y] -> obtener_tipo() == 'C' && !this -> mapa[coord_x][coord_y] -> esta_ocupado()){
-            coordenadas_validas = new int[2];
+            coordenadas_validas = new int[2];//liberamos?
             coordenadas_validas[0] = coord_x;
             coordenadas_validas[1] = coord_y;
         }
@@ -144,9 +144,12 @@ Mapa::~Mapa() {
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
         for (int columna = 0; columna < this -> cantidad_columnas; columna++){
             delete this -> mapa[fila][columna];
+            this -> mapa[fila][columna] = nullptr;
         }
         delete [] this -> mapa[fila];
+        this -> mapa[fila] = nullptr;
     }
     delete [] this -> mapa;
+    this -> mapa = nullptr;
     cout << "MAPA" << endl;
 }

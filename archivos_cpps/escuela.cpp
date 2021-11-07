@@ -55,8 +55,10 @@ void Escuela::mostrar_saludo() {
 Escuela::~Escuela() {
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = nullptr;
     }
 
     delete [] this -> ubicaciones;
+    this -> ubicaciones = nullptr;
     cout << "ESCUELA" << endl;
 }

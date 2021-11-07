@@ -57,8 +57,10 @@ void Fabrica::mostrar_saludo() {
 Fabrica::~Fabrica() {
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = nullptr;
     }
 
     delete [] this -> ubicaciones;
+    this -> ubicaciones = nullptr;
     cout << "FABRICA" << endl;
 }

@@ -23,6 +23,7 @@ int* Edificio::obtener_materiales_necesarios() {
 }
 
 Edificio::~Edificio(){
-    delete[] materiales_necesarios;
+    delete[] this -> materiales_necesarios;
+    this -> materiales_necesarios = nullptr;
     cout << "EDIFICIO" << endl;
 }
