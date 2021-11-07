@@ -25,4 +25,17 @@ const std::string COLOR_MARRON = "\033[38;5;136m";
 const std::string FONDO_AZUL = "\033[48;5;27m";
 const std::string FONDO_VERDE = "\033[48;5;2m";
 const std::string FONDO_GRIS = "\033[48;5;240m";
+
+const std::string LOGO_ESCUELA = "\U0001f3eb";
+const std::string LOGO_FABRICA = "\U0001f3ed";
+const std::string LOGO_GUARDAR = "\U0001f4be";
+const std::string LOGO_DEMOLER = "\U0001f6a7";
+const std::string LOGO_CONSTRUIR = "\U0001f3d7";
+const std::string LOGO_LISTAR_CONSTRUIDOS = "\u2705";
+const std::string LOGO_LISTAR_TODOS_EDIFICIOS = "\U0001f3d9";
+const std::string LOGO_LLUVIA_RECURSOS = "\U0001f327";
+const std::string LOGO_CONSULTAR_COORDENADAS = "\U0001f5fa";
+const std::string LOGO_MAPA = "\U0001f30e";
+const std::string LOGO_RECOLECTAR_RECURSOS = "\U0001f6e0";
+const std::string LOGO_INVENTARIO = "\U0001f9f0";
 #endif
