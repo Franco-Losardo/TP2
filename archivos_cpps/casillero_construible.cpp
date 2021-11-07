@@ -6,7 +6,7 @@ Casillero_construible::Casillero_construible() {
     this -> tipo = 'T';
 }
 
-void Casillero_construible::usar_casillero(Edificio* edificio, Material* material){
+void Casillero_construible::usar_casillero(Edificio* edificio, Material* material) {
     this -> edificio = edificio;
 }
 
@@ -33,8 +33,9 @@ void Casillero_construible::mostrar() {
     }
 }
 
-Casillero_construible::~Casillero_construible(){
-    if(this -> edificio){
+Casillero_construible::~Casillero_construible() {
+    if (this -> edificio) {
         delete this -> edificio;
     }
+    cout << "CASILLERO CONSTRUIBLE" << endl;
 }

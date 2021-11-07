@@ -22,4 +22,6 @@ bool Casillero::esta_ocupado() {
     return false;
 }
 
-Casillero::~Casillero(){}
+Casillero::~Casillero(){
+    cout << "CASILLERO" << endl;
+}

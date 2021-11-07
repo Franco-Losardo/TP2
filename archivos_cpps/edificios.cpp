@@ -28,5 +28,5 @@ int* Edificio::obtener_materiales_necesarios() {
 Edificio::~Edificio(){
     /*delete[] coordenadas;
     delete[] materiales_necesarios;*/
-    cout << "entro destructor calse edificio" << endl;
+    cout << "EDIFICIO" << endl;
 }

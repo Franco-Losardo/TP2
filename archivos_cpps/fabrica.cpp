@@ -66,5 +66,5 @@ Fabrica::~Fabrica() {
     }
 
     delete [] this -> ubicaciones;
-    cout << "entro destructor calse fabrica" << endl;
+    cout << "FABRICA" << endl;
 }

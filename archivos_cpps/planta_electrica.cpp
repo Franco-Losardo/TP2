@@ -65,5 +65,5 @@ Planta_electrica::~Planta_electrica() {
     }
 
     delete [] this -> ubicaciones;
-    cout << "entro destructor calse planta ele" << endl;
+    cout << "PLANTA ELECTRICA" << endl;
 }

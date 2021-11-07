@@ -10,7 +10,7 @@ bool Casillero_transitable::esta_ocupado() {
     return this -> material != 0;
 }
 
-void Casillero_transitable::usar_casillero(Edificio* edificio, Material* material){
+void Casillero_transitable::usar_casillero(Edificio* edificio, Material* material) {
     this -> material = material;
 }
 
@@ -32,8 +32,9 @@ void Casillero_transitable::mostrar() {
         cout << COLOR_VERDE << "Soy un casillero transitable y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }
-Casillero_transitable::~Casillero_transitable(){
-    if(this -> material){
+Casillero_transitable::~Casillero_transitable() {
+    if(this -> material) {
         delete material;
     }
+    cout << "CASILLERO TRANSITABLE" << endl;
 }

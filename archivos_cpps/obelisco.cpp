@@ -65,5 +65,5 @@ Obelisco::~Obelisco() {
     }
 
     delete [] this -> ubicaciones;
-    cout << "entro destructor calse obelisco" << endl;
+    cout << "OBELISCO" << endl;
 }

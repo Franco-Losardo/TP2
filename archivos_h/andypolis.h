@@ -95,7 +95,7 @@ class Andypolis{
         
         // PRE: recibe el nombre del edificio a construir
         // POS: le pide al usuario confirmacion para construir el edificio
-        bool pedir_confirmacion(string edificio_a_construir);
+        bool confirmar_construccion(string edificio_a_construir);
         
         // PRE:
         // POS: devuelve un puntero a las coordenadas ingresadas
@@ -144,10 +144,6 @@ class Andypolis{
         // PRE: recibe dos coordenadas
         // POS: verifica que se pueda demoler en las coordenadas recibidas
         void validar_entrada_para_demoler(int coord_x, int coord_y);
-
-        // PRE: recibe la cantidad de edificios construidos y un doble puntero a entero donde estan las ubicaciones
-        // POS: muestra los edificios construidos y en qué ubicaciones
-        void mostrar_construidos(int construidos, int** ubicaciones);
 
         // PRE: recibe la cantidad de edificios construidos y un doble puntero a entero donde estan las ubicaciones
         // POS: muestra las ubicaciones donde hay edificios construidos
