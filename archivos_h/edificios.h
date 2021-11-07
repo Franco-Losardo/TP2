@@ -11,7 +11,6 @@ class Edificio{
         string nombre;
         int* materiales_necesarios;
         int cantidad_permitida;
-        int* coordenadas;
         string representacion;
 
     public:
@@ -30,10 +29,6 @@ class Edificio{
         // PRE:
         // POS: devuelve un puntero a los materiales necesario del edificio en cuestion
         int* obtener_materiales_necesarios();
-
-        // PRE:
-        // POS: devuelve la ubicacion del edificio en cuestion
-        int* obtener_ubicacion();
         
         // PRE:
         // POS: devuelve la representacion del edificio en cuestion

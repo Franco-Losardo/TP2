@@ -18,9 +18,6 @@ Mina::Mina(string nombre, int piedra_necesaria, int madera_necesaria, int metal_
 Mina::Mina(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
-    this -> coordenadas = new int[2];
-    this -> coordenadas[0] = coord_x;
-    this -> coordenadas[1] = coord_y;
     this -> ubicaciones[cantidad_construidos] = new int[2];
     this -> ubicaciones[cantidad_construidos][0] = coord_x;
     this -> ubicaciones[cantidad_construidos][1] = coord_y;
@@ -57,9 +54,6 @@ void Mina::mostrar_saludo() {
 
 
 Mina::~Mina() {
-    delete [] this -> materiales_necesarios;
-    delete [] this -> coordenadas;
-
     for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
     }
