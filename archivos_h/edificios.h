@@ -15,27 +15,28 @@ class Edificio{
         string representacion;
 
     public:
+        // Constructor
         Edificio();
         //Metodos
 
         // PRE:
-        // POS:
+        // POS: devuelve el nombre del edificio
         string obtener_nombre();
 
         // PRE:
-        // POS:
+        // POS: devuelve la cantidad permitida del edificio en cuestion
         int obtener_cantidad_permitida();
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero a los materiales necesario del edificio en cuestion
         int* obtener_materiales_necesarios();
 
         // PRE:
-        // POS:
+        // POS: devuelve la ubicacion del edificio en cuestion
         int* obtener_ubicacion();
         
         // PRE:
-        // POS:
+        // POS: devuelve la representacion del edificio en cuestion
         string obtener_representacion();
         
         // PRE:
