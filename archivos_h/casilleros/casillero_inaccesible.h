@@ -5,28 +5,18 @@
 
 class Casillero_inaccesible: public Casillero {
     private:
-        //al igual q el resto de los casilleros, puede q falten metodos y atributos
+        char tipo;
+
     public:
+        // Constructor
+        Casillero_inaccesible(char tipo);
+
         // PRE:
-        // POS:
+        // POS: devuelve el tipo del casillero
         char obtener_tipo();
 
         // PRE:
-        // POS:
-        bool es_posible_construir();
-        
-        // PRE:
-        // POS:
-        Edificio* obtener_edificio();
-
-        // PRE:
-        // POS:
-        Material* obtener_material();
-
-        bool esta_ocupado();
-
-        // PRE:
-        // POS:
+        // POS: muestra por pantalla el mensaje del del casillero
         void mostrar();
 };
 

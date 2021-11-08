@@ -11,37 +11,32 @@ class Edificio{
         string nombre;
         int* materiales_necesarios;
         int cantidad_permitida;
-        int* coordenadas;
         string representacion;
 
     public:
+        // Constructor
         Edificio();
         //Metodos
 
         // PRE:
-        // POS:
+        // POS: devuelve el nombre del edificio
         string obtener_nombre();
 
         // PRE:
-        // POS:
+        // POS: devuelve la cantidad permitida del edificio en cuestion
         int obtener_cantidad_permitida();
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero a los materiales necesario del edificio en cuestion
         int* obtener_materiales_necesarios();
-
-        // PRE:
-        // POS:
-        int* obtener_ubicacion();
         
         // PRE:
-        // POS:
+        // POS: devuelve la representacion del edificio en cuestion
         string obtener_representacion();
         
         // PRE:
         // POS:
         virtual int brindar_materiales() = 0;
-
 
         // PRE:
         // POS:
@@ -50,14 +45,22 @@ class Edificio{
         // PRE:
         // POS:
         virtual int obtener_construidos() = 0;
-        
+
+        // PRE:
+        // POS:
+        virtual int** obtener_ubicaciones() = 0;
+
+        // PRE:
+        // POS:
+        virtual void demoler(int coordenada_x, int coordenada_y) = 0;
+
         // PRE:
         // POS:
         virtual void mostrar_edificio() = 0;
 
         // PRE:
         // POS:
-        ~Edificio();
+        virtual ~Edificio();
 };
 
 #endif

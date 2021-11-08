@@ -17,16 +17,13 @@ string Edificio::obtener_representacion(){
     return this->representacion;
 }
 
-int* Edificio::obtener_ubicacion() { 
-    return this -> coordenadas;
-}
 
 int* Edificio::obtener_materiales_necesarios() { 
     return this -> materiales_necesarios;
 }
 
 Edificio::~Edificio(){
-    delete[] coordenadas;
-    delete[] materiales_necesarios;
-    
+    delete[] this -> materiales_necesarios;
+    this -> materiales_necesarios = nullptr;
+    cout << "EDIFICIO" << endl;
 }

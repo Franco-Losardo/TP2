@@ -6,38 +6,38 @@
 class Casillero_construible: public Casillero {
     private:
         Edificio* edificio;
+        char tipo;
+
     public:
-        // PRE:
-        // POS:
-        Casillero_construible();
+        // Constructor
+        Casillero_construible(char tipo);
+
+        // PRE: recibe un puntero a edifcio y a material
+        // POS: ubica en el casillero el puntero a edificio
+        void usar_casillero(Edificio* edificio, Material* material);
 
         // PRE:
         // POS:
-        void usar_casillero(Edificio *edificio, Material* material);
+        void vaciar_casillero();
 
         // PRE:
-        // POS:
-        void ocupar_casillero(Edificio* objeto);
-
-        // PRE:
-        // POS:
+        // POS: devuelve verdadero en caso que el casillero este ocupado, falso de lo contrario
         bool esta_ocupado();
 
         // PRE:
-        // POS:
+        // POS: devuelve el tipo del casillero
         char obtener_tipo();
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero al edifcio que se encuentra en el casillero
         Edificio* obtener_edificio();
 
         // PRE:
-        // POS:
-        Material* obtener_material();
-
-        // PRE:
-        // POS:
+        // POS: muestra por pantalla el mensaje del del casillero
         void mostrar();
+
+        // Destructor
+        ~Casillero_construible();
 };
 
 #endif

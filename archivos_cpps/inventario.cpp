@@ -10,17 +10,17 @@ Inventario::Inventario() {
 
 void Inventario::cargar_inventario() {
     ifstream archivo_materiales(RUTA_MATERIALES);
-    if (!archivo_materiales){
+    if (!archivo_materiales) {
         cout << COLOR_ROJO << "El archivo de materiales no existe. Para continuar, crealos y volve a correr el programa." << COLOR_POR_DEFECTO << endl;
         exit(1);
     }
     string tipo_material;
     int cantidad = 0;
-    while (archivo_materiales >> tipo_material >> cantidad){
-        this->inventario[this->cantidad_materiales] = Material(tipo_material, cantidad);
+    while (archivo_materiales >> tipo_material >> cantidad) {
+        this -> inventario[this -> cantidad_materiales] = Material(tipo_material, cantidad);
         this -> cantidad_materiales++;
 
-        if (this -> cantidad_materiales == MATERIALES_DISPONIBLES_MINIMO){
+        if (this -> cantidad_materiales == MATERIALES_DISPONIBLES_MINIMO) {
             this -> redimensionar_inventario(this -> cantidad_materiales * 2);
         }
     }
@@ -37,9 +37,9 @@ void Inventario::redimensionar_inventario(int nueva_longitud) {
     this -> inventario = nuevo_inventario;
 }
 
-void Inventario::guardar_inventario(){
+void Inventario::guardar_inventario() {
     ofstream archivo_materiales(RUTA_MATERIALES);
-    for (int i = 0; i < this -> cantidad_materiales; i++){
+    for (int i = 0; i < this -> cantidad_materiales; i++) {
         string nombre_material = this -> inventario[i].obtener_tipo();
         int cantidad = this -> inventario[i].obtener_cantidad();
         archivo_materiales << nombre_material << DELIMITADOR << cantidad << endl;
@@ -55,14 +55,12 @@ Material* Inventario::obtener_inventario() {
     return this -> inventario;
 }
 
-int Inventario::posicion_del_material(string material){
-    int pos = 0;
-    for (int i = 0; i < this->cantidad_materiales; i++){
-        if(this->inventario[i].obtener_tipo() == material){
-            pos = i;
-        }
+int Inventario::posicion_del_material(string material) {
+    int indice = 0;
+    while (this -> inventario[indice].obtener_tipo() != material) {
+        indice++;
     }
-    return pos;
+    return indice;
 }
 
 void Inventario::mostrar_inventario() {
@@ -74,4 +72,6 @@ void Inventario::mostrar_inventario() {
 
 Inventario::~Inventario() {
     delete [] this -> inventario;
+    this -> inventario = 0;
+    cout << "INVENTARIO" << endl;
 }

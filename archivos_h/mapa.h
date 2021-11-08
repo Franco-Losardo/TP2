@@ -34,31 +34,35 @@ class Mapa {
 
         // PRE:
         // POS:
-        void colocar_casillero(int coord_x, int coord_y, Casillero* casillero);
+        void liberar_posicion(int coordenada_x, int coordenada_y);
 
         // PRE:
         // POS:
         bool se_puede_construir(int coord_x, int coord_y);
 
-
+        // PRE:
+        // POS:
         bool coordenadas_fuera_de_rango(int coord_x, int coord_y);
 
         // PRE:
         // POS:
         void consultar_coordenada(int coord_x, int coord_y);
 
+        // PRE:
+        // POS:
+        bool es_posible_insertar_materiales(int cantidad_a_insertar);
 
-        Edificio* obtener_edificio_en_casillero(int coord_x , int coord_y);
+        // PRE:
+        // POS:
+        int* generar_coordenadas_validas();
 
-
-        Casillero* obtener_casillero(int coord_x , int coord_y);
+        // PRE:
+        // POS:
+        Edificio* obtener_elemento(int coord_x , int coord_y);
 
         // PRE:
         // POS:
         void mostrar_mapa();
-
-
-        int* obtener_dimensiones();
 
         // PRE:
         // POS:
