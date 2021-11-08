@@ -38,6 +38,10 @@ class Planta_electrica: public Edificio{
         // POS:
         void demoler(int coordenada_x, int coordenada_y);
 
+        // PRE:
+        // POS:
+        void borrar_ubicaciones();
+
         // Destructor
         ~Planta_electrica();
 };

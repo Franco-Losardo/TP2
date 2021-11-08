@@ -68,14 +68,23 @@ void Aserradero::mostrar_saludo() {
     cout << COLOR_MARRON <<"Soy un aserradero y me encuentro en el casillero consultado" << COLOR_POR_DEFECTO <<endl;
 }
 
+void Aserradero::borrar_ubicaciones() {
+    for (int i = 0; i < this -> cantidad_permitida; i++) {
+        delete [] this -> ubicaciones[i];
+        this -> ubicaciones[i] = 0;
+    }
+    delete [] this -> ubicaciones;
+    this -> ubicaciones = 0;
+}
+
 Aserradero::~Aserradero() {
-    for (int i = 0; i < this -> cantidad_construidos; i++) {
+    /*for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
         this -> ubicaciones[i] = 0;
     }
 
     delete [] this -> ubicaciones;
-    this -> ubicaciones = 0;
+    this -> ubicaciones = 0;*/
 
     cout << "ASERRADERO" << endl;
 }

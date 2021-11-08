@@ -38,6 +38,10 @@ class Aserradero: public Edificio {
         // POS:
         void demoler(int coordenada_x, int coordenada_y);
 
+        // PRE:
+        // POS:
+        void borrar_ubicaciones();
+
         // Destructor
         ~Aserradero();
 };

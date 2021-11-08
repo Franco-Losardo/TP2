@@ -67,14 +67,23 @@ void Fabrica::mostrar_saludo() {
     cout << COLOR_MARRON <<"Soy una fabrica y me encuentro en el casillero consultado" << COLOR_POR_DEFECTO <<endl;
 }
 
+void Fabrica::borrar_ubicaciones(){
+    for (int i = 0; i < this->cantidad_permitida; i++) {
+        delete[] this -> ubicaciones[i];
+        this -> ubicaciones[i] = 0;
+    }
+    delete[] this -> ubicaciones;
+    this -> ubicaciones = 0;
+}
 
-Fabrica::~Fabrica() {
-    for (int i = 0; i < this -> cantidad_construidos; i++) {
+Fabrica::~Fabrica(){
+    /*for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
-        this -> ubicaciones[i] = nullptr;
+        this -> ubicaciones[i] = 0;
     }
 
     delete [] this -> ubicaciones;
-    this -> ubicaciones = nullptr;
+    this -> ubicaciones = 0;*/
+
     cout << "FABRICA" << endl;
 }

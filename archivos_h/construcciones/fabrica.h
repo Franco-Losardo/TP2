@@ -37,6 +37,10 @@ class Fabrica: public Edificio{
         // PRE:
         // POS:
         void demoler(int coordenada_x, int coordenada_y);
+
+        // PRE:
+        // POS:
+        void borrar_ubicaciones();
         
         // Destructor
         ~Fabrica();

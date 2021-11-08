@@ -66,14 +66,23 @@ void Mina::mostrar_saludo() {
     cout << COLOR_MARRON <<"Soy una mina y me encuentro en el casillero consultado" <<  COLOR_POR_DEFECTO <<endl;
 }
 
+void Mina::borrar_ubicaciones() {
+    for (int i = 0; i < this->cantidad_permitida; i++) {
+        delete[] this -> ubicaciones[i];
+        this -> ubicaciones[i] = 0;
+    }
+    delete[] this -> ubicaciones;
+    this -> ubicaciones = 0;
+}
 
 Mina::~Mina() {
-    for (int i = 0; i < this -> cantidad_construidos; i++) {
+    /*for (int i = 0; i < this -> cantidad_construidos; i++) {
         delete [] this -> ubicaciones[i];
-        this -> ubicaciones[i] = nullptr;
+        this -> ubicaciones[i] = 0;
     }
 
     delete [] this -> ubicaciones;
-    this -> ubicaciones = nullptr;
+    this -> ubicaciones = 0;*/
+
     cout << "MINA" << endl;
 }

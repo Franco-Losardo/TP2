@@ -60,6 +60,10 @@ class Edificio{
 
         // PRE:
         // POS:
+        virtual void borrar_ubicaciones() = 0;
+
+        // PRE:
+        // POS:
         virtual ~Edificio();
 };
 
