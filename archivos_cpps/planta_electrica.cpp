@@ -8,11 +8,14 @@ int** Planta_electrica::ubicaciones = 0;
 Planta_electrica::Planta_electrica(string nombre, int piedra_necesaria, int madera_necesaria, int metal_necesario, int permitidos) {
     this -> nombre = nombre;
     this -> cantidad_permitida = permitidos;
-    this -> ubicaciones = new int*[permitidos];
     this -> materiales_necesarios = new int[3];
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
+    this -> ubicaciones = new int*[permitidos];
+    for (int i = 0; i < permitidos; i++){
+        this->ubicaciones[i] = 0;
+    }
 }
 
 Planta_electrica::Planta_electrica(string nombre, int coord_x, int coord_y) {
@@ -67,8 +70,7 @@ void Planta_electrica::mostrar_saludo() {
 }
 
 void Planta_electrica::borrar_ubicaciones() {
-    for (int i = 0; i < this->cantidad_permitida; i++)
-    {
+    for (int i = 0; i < this->cantidad_permitida; i++){
         delete[] this->ubicaciones[i];
         this->ubicaciones[i] = 0;
     }

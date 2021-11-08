@@ -64,6 +64,9 @@ class Mapa {
         // POS:
         void mostrar_mapa();
 
+        char obtener_casillero(int coordenada_x, int coordenada_y);
+
+
         // PRE:
         // POS:
         ~Mapa();

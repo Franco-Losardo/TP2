@@ -8,9 +8,9 @@ using namespace std;
 Andypolis::Andypolis() {
     this -> cantidad_edificios = EDIFICIOS_DISPONIBLES_MINIMO;
     this -> edificios_disponibles = new Edificio*[this -> cantidad_edificios];
+    this -> cargar_edificios_disponibles();
     this -> inventario.cargar_inventario();
     this -> mapa.cargar_mapa();
-    this -> cargar_edificios_disponibles();
     this -> cargar_construidos();
 }
 
@@ -337,8 +337,13 @@ void Andypolis::validar_entrada_para_demoler(int coordenada_x, int coordenada_y)
     else if (!this -> mapa.esta_ocupado(coordenada_x, coordenada_y)) {
         cout << COLOR_ROJO << "En las coordenadas ingresadas no hay nada para demoler" << COLOR_POR_DEFECTO << endl;
     }
+    else if (this -> mapa.obtener_casillero(coordenada_x, coordenada_y) != 'T'){
+        cout << COLOR_ROJO << "En las coordenadas ingresadas no se puede demoler dado que no es un casillero de tipo Terreno" << COLOR_POR_DEFECTO << endl;
+    }
     else {
-        string edificio_demolido = this -> mapa.obtener_elemento(coordenada_x, coordenada_y) -> obtener_nombre();
+        Edificio* edificio = this -> mapa.obtener_elemento(coordenada_x, coordenada_y);
+        edificio -> demoler(coordenada_x, coordenada_y);
+        string edificio_demolido = edificio -> obtener_nombre();
         this -> devolver_mitad_materiales(edificio_demolido);
         this -> mapa.liberar_posicion(coordenada_x, coordenada_y);
         cout << COLOR_VERDE << edificio_demolido << " fue demolido statisfactoriamente!" << COLOR_POR_DEFECTO << endl;

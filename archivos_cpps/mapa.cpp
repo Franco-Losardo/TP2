@@ -78,7 +78,9 @@ int* Mapa::generar_coordenadas_validas() {
 bool Mapa::esta_ocupado(int coord_x, int coord_y){
     return this -> mapa[coord_x][coord_y] -> esta_ocupado();
 }
-
+char Mapa::obtener_casillero(int coordenada_x, int coordenada_y){
+    return this -> mapa[coordenada_x][coordenada_y] -> obtener_tipo();
+}
 Edificio* Mapa::obtener_elemento(int coord_x, int coord_y){
     return this -> mapa[coord_x][coord_y] -> obtener_edificio();
 }
@@ -88,9 +90,6 @@ void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x,
 }
 
 void Mapa::liberar_posicion(int coordenada_x, int coordenada_y) {
-    if (this -> mapa[coordenada_x][coordenada_y] -> obtener_tipo() == 'T') {
-        this -> mapa[coordenada_x][coordenada_y] -> obtener_edificio() -> demoler(coordenada_x, coordenada_y);
-    }
     this -> mapa[coordenada_x][coordenada_y] -> vaciar_casillero();
 }
 
