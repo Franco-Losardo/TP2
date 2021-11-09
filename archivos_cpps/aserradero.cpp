@@ -41,6 +41,9 @@ void Aserradero::demoler(int coordenada_x, int coordenada_y) {
         int* coordenadas = this -> ubicaciones[indice];
         if (coordenadas[0] == coordenada_x && coordenadas[1] == coordenada_y) {
             delete [] coordenadas;
+            delete[] this -> ubicaciones[indice];
+            coordenadas = 0;
+            this -> ubicaciones[indice] = 0;
             eliminada = true;
         }
         indice++;
