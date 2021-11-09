@@ -333,6 +333,7 @@ void Andypolis::demoler_edificio_por_coordenada() {
     int* coordenadas = pedir_coordenadas();
     validar_entrada_para_demoler(coordenadas[0], coordenadas[1]);
     delete [] coordenadas;
+    coordenadas = 0;
 }
 
 void Andypolis::validar_entrada_para_demoler(int coordenada_x, int coordenada_y) {
@@ -367,6 +368,9 @@ void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     materiales_actuales[posiciones[1]].establecer_cantidad(madera_necesaria / 2);
     materiales_actuales[posiciones[2]].establecer_cantidad(metal_necesario / 2);
     delete [] posiciones;
+    delete [] materiales_necesarios;
+    posiciones = 0;
+    materiales_necesarios = 0;
 }
 
 void Andypolis::mostrar_mapa() {
@@ -413,6 +417,7 @@ void Andypolis::recolectar_recursos_producidos() {
         }
     }
     delete [] posiciones;
+    posiciones = 0;
     cout << COLOR_VERDE_AGUA << contador << " edificios brindarion materiales. Verifique cuáles con la opcion 3" << COLOR_POR_DEFECTO << endl;
 }
 
@@ -436,6 +441,7 @@ void Andypolis::llueve_piedra(int cantidad) {
             this -> mapa.ocupar_casillero(0, new Material("piedra", 1), coordenadas[0], coordenadas[1]);
             cout << '(' << coordenadas[0] << ',' << coordenadas[1] << ')' << endl;
             delete [] coordenadas;
+            coordenadas = 0;
         }
         cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
     }
@@ -452,6 +458,7 @@ void Andypolis::llueve_madera(int cantidad) {
             this -> mapa.ocupar_casillero(0, new Material("madera", 1), coordenadas[0], coordenadas[1]);
             cout << '(' << coordenadas[0] << ',' << coordenadas[1] << ')' << endl;
             delete [] coordenadas;
+            coordenadas = 0;
         }
         cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
     }
@@ -468,6 +475,7 @@ void Andypolis::llueve_metal(int cantidad) {
             this -> mapa.ocupar_casillero(0, new Material("metal", 1), coordenadas[0], coordenadas[1]);
             cout << '(' << coordenadas[0] << ',' << coordenadas[1] << ')' << endl;
             delete [] coordenadas;
+            coordenadas = 0;
         }
         cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
     }
