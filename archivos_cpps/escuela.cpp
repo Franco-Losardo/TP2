@@ -12,7 +12,7 @@ Escuela::Escuela(string nombre, int piedra_necesaria, int madera_necesaria, int 
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
-    this -> ubicaciones = new int*[cantidad_construidos];
+    this -> ubicaciones = new int*[this -> cantidad_construidos];
 }
 
 Escuela::Escuela(string nombre, int coord_x, int coord_y) {
@@ -22,7 +22,7 @@ Escuela::Escuela(string nombre, int coord_x, int coord_y) {
         this -> ubicaciones = new int*[1];
     }
     else{
-        this -> redimensionar_ubicaciones(cantidad_construidos + 1);
+        this -> redimensionar_ubicaciones(this -> cantidad_construidos + 1);
     }
     this -> ubicaciones[cantidad_construidos] = new int[2];
     this -> ubicaciones[cantidad_construidos][0] = coord_x;
