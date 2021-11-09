@@ -12,23 +12,35 @@ Obelisco::Obelisco(string nombre, int piedra_necesaria, int madera_necesaria, in
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
-    this -> ubicaciones = new int*[permitidos];
-    for (int i = 0; i < permitidos; i++){
-        this -> ubicaciones[i] = 0;
-    }
+    this -> ubicaciones = new int *[cantidad_construidos];
 }
 
 Obelisco::Obelisco(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
-    this -> ubicaciones[cantidad_construidos] = new int[2];
+    if (!this -> ubicaciones){
+        this -> ubicaciones[this -> cantidad_construidos] = new int[1];
+    }
+    else{
+        this -> redimensionar_ubicaciones(cantidad_construidos);
+    }
+    this->ubicaciones[cantidad_construidos] = new int[2];
     this -> ubicaciones[cantidad_construidos][0] = coord_x;
     this -> ubicaciones[cantidad_construidos][1] = coord_y;
-    this -> cantidad_construidos++;
+    this-> cantidad_construidos++;
 }
 
 int Obelisco::brindar_materiales() {
     return 0;
+}
+
+void Obelisco::redimensionar_ubicaciones(int nueva_longitud){
+    int **nuevo_vector_ubicaciones = new int *[nueva_longitud];
+    for (int i = 0; i < this->cantidad_construidos; i++) {
+        nuevo_vector_ubicaciones[i] = this -> ubicaciones[i];
+    }
+    delete[] this -> ubicaciones;
+    this -> ubicaciones = nuevo_vector_ubicaciones;
 }
 
 void Obelisco::mostrar_edificio() {
@@ -73,8 +85,7 @@ void Obelisco::mostrar_saludo() {
 }
 
 void Obelisco::borrar_ubicaciones() {
-    for (int i = 0; i < this -> cantidad_permitida; i++)
-    {
+    for (int i = 0; i < this -> cantidad_permitida; i++) {
         delete[] this -> ubicaciones[i];
         this -> ubicaciones[i] = 0;
     }

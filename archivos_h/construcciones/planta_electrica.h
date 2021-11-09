@@ -42,6 +42,10 @@ class Planta_electrica: public Edificio{
         // POS:
         void borrar_ubicaciones();
 
+        // PRE:
+        // POS:
+        void redimensionar_ubicaciones(int nueva_longitud);
+
         // Destructor
         ~Planta_electrica();
 };

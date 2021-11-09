@@ -12,16 +12,19 @@ Mina::Mina(string nombre, int piedra_necesaria, int madera_necesaria, int metal_
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
-    this -> ubicaciones = new int*[permitidos];
-    for (int i = 0; i < permitidos; i++){
-        this->ubicaciones[i] = 0;
-    }
+    this -> ubicaciones = new int *[cantidad_construidos];
 }
 
 Mina::Mina(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
-    this -> ubicaciones[cantidad_construidos] = new int[2];
+    if (!this -> ubicaciones){
+        this -> ubicaciones[this -> cantidad_construidos] = new int[1];
+    }
+    else{
+        this -> redimensionar_ubicaciones(cantidad_construidos);
+    }
+    this->ubicaciones[cantidad_construidos] = new int[2];
     this -> ubicaciones[cantidad_construidos][0] = coord_x;
     this -> ubicaciones[cantidad_construidos][1] = coord_y;
     this -> cantidad_construidos++;
@@ -29,6 +32,15 @@ Mina::Mina(string nombre, int coord_x, int coord_y) {
 
 int Mina::brindar_materiales() {
     return BRINDAR_MATERIALES_MINA;
+}
+
+void Mina::redimensionar_ubicaciones(int nueva_longitud){
+    int** nuevo_vector_ubicaciones = new int* [nueva_longitud];
+    for (int i = 0; i < this -> cantidad_construidos; i++){
+        nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
+    }
+    delete[] this -> ubicaciones;
+    this -> ubicaciones = nuevo_vector_ubicaciones;
 }
 
 void Mina::mostrar_edificio() {

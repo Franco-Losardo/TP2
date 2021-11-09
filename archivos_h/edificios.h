@@ -64,6 +64,10 @@ class Edificio{
 
         // PRE:
         // POS:
+        virtual void redimensionar_ubicaciones(int nueva_longitud) = 0;
+
+        // PRE:
+        // POS:
         virtual ~Edificio();
 };
 

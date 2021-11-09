@@ -12,23 +12,35 @@ Planta_electrica::Planta_electrica(string nombre, int piedra_necesaria, int made
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
-    this -> ubicaciones = new int*[permitidos];
-    for (int i = 0; i < permitidos; i++){
-        this->ubicaciones[i] = 0;
-    }
+    this -> ubicaciones = new int *[cantidad_construidos];
 }
 
 Planta_electrica::Planta_electrica(string nombre, int coord_x, int coord_y) {
-    this -> nombre = nombre;
-    this -> representacion = nombre[0];
-    this -> ubicaciones[cantidad_construidos] = new int[2];
-    this -> ubicaciones[cantidad_construidos][0] = coord_x;
-    this -> ubicaciones[cantidad_construidos][1] = coord_y;
-    this -> cantidad_construidos++;
+    this->nombre = nombre;
+    this->representacion = nombre[0];
+    if (!this->ubicaciones){
+        this->ubicaciones[this -> cantidad_construidos] = new int[1];
+    }
+    else{
+        this->redimensionar_ubicaciones(cantidad_construidos);
+    }
+    this->ubicaciones[cantidad_construidos] = new int[2];
+    this->ubicaciones[cantidad_construidos][0] = coord_x;
+    this->ubicaciones[cantidad_construidos][1] = coord_y;
+    this->cantidad_construidos++;
 }
 
 int Planta_electrica::brindar_materiales() {
     return 0;
+}
+void Planta_electrica::redimensionar_ubicaciones(int nueva_longitud){
+    int **nuevo_vector_ubicaciones = new int *[nueva_longitud];
+    for (int i = 0; i < this->cantidad_construidos; i++)
+    {
+        nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
+    }
+    delete[] this->ubicaciones;
+    this->ubicaciones = nuevo_vector_ubicaciones;
 }
 
 void Planta_electrica::mostrar_edificio() {
