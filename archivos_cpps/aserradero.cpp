@@ -18,10 +18,10 @@ Aserradero::Aserradero(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
     if (!this -> ubicaciones) {
-        this -> ubicaciones[this -> cantidad_construidos] = new int[1];
+        this -> ubicaciones = new int*[1];
     }
     else{
-        this -> redimensionar_ubicaciones(cantidad_construidos);
+        this -> redimensionar_ubicaciones(cantidad_construidos + 1);
     }
     this->ubicaciones[cantidad_construidos] = new int[2];
     this -> ubicaciones[cantidad_construidos][0] = coord_x;
@@ -39,8 +39,10 @@ int** Aserradero::obtener_ubicaciones() {
 
 void Aserradero::redimensionar_ubicaciones(int nueva_longitud) {
     int **nuevo_vector_ubicaciones = new int *[nueva_longitud];
-    for (int i = 0; i < this->cantidad_construidos; i++){
-        nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
+    for (int i = 0; i < this->cantidad_construidos; i++) {
+        if (this -> ubicaciones[i]) {
+            nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
+        }
     }
     delete[] this->ubicaciones;
     this->ubicaciones = nuevo_vector_ubicaciones;
@@ -60,6 +62,7 @@ void Aserradero::demoler(int coordenada_x, int coordenada_y) {
         }
         indice++;
     }
+    this->redimensionar_ubicaciones(this->cantidad_construidos);
     this -> cantidad_construidos--;
 }
 

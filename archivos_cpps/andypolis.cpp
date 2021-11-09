@@ -104,6 +104,7 @@ void Andypolis::redimensionar_arreglo_edificios(int nueva_longitud) {
     }
     delete [] this -> edificios_disponibles;
     this -> edificios_disponibles = nuevo_vector_edificios;
+    //this -> cantidad_edificios = nueva_longitud;
 }
 
 void Andypolis::guardar_edificios() {
@@ -112,8 +113,10 @@ void Andypolis::guardar_edificios() {
     for (int i = 0; i < this -> cantidad_edificios; i++) {
         ubicaciones = this -> edificios_disponibles[i] -> obtener_ubicaciones();
         for (int j = 0; j < this -> edificios_disponibles[i] -> obtener_construidos(); j++) {
-            archivo << this -> edificios_disponibles[i] -> obtener_nombre();
-            archivo << " (" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ')' << endl; 
+            if (this->edificios_disponibles[i]->obtener_construidos()) {
+                archivo << this->edificios_disponibles[i]->obtener_nombre();
+                archivo << " (" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ")" << endl; 
+            }
         }
     }   
 }
@@ -294,8 +297,10 @@ void Andypolis::construir_edificio_por_nombre() {
 
 void Andypolis::mostrar_ubicaciones(int permitidos, int** ubicaciones) {
     for (int j = 0; j < permitidos; j++) {
-        if (ubicaciones[j]) {
-            cout << '(' << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
+        if (ubicaciones[j]){
+            //cout << ubicaciones[j] << endl;
+            cout << "(" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
+            //cout << "entro" << endl;
         }
     }
 }
