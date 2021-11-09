@@ -15,7 +15,7 @@ class Fabrica: public Edificio{
         Fabrica(std::string nombre, int coord_x, int coord_y);
 
         // PRE:
-        // POS: devuelve la cantidad de material que corresponda
+        // POS: devuelve los materiales porducidos por el edificio
         int brindar_materiales();
 
         // PRE:
@@ -23,7 +23,7 @@ class Fabrica: public Edificio{
         void mostrar_saludo();
         
         // PRE: 
-        // POS: devuelve la cantidad de edificios construidos de este tipo
+        // POS: devuelve la cantidad de edificios construidos
         int obtener_construidos();
 
         // PRE:
@@ -34,16 +34,16 @@ class Fabrica: public Edificio{
         // POS: devuelve un doble puntero al vector que contiene los subvectores donde estan las ubicaciones
         int** obtener_ubicaciones();
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: borra las coordenadas recibidas del arreglo de ubicaciones
         void demoler(int coordenada_x, int coordenada_y);
 
         // PRE:
-        // POS:
+        // POS: borra el vector de ubicaciones del edificio
         void borrar_ubicaciones();
 
-        // PRE:
-        // POS:
+        // PRE: recibe la nueva longitud del arreglo
+        // POS: redimensiona el arreglo de ubicaciones
         void redimensionar_ubicaciones(int nueva_longitud);
 
         // Destructor

@@ -12,63 +12,63 @@ class Mapa {
         Casillero*** mapa;
 
     public:
-        // PRE:
-        // POS:
+        // Constructor
         Mapa();
 
         // PRE:
-        // POS:
+        // POS: crea el mapa
         void crear_mapa();
 
         // PRE:
-        // POS:
+        // POS: carga la matriz y asigna los casilleros correspondientes
         void cargar_mapa();
         
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: devuleve verdadero si el casillero en las corodenadas recibidas esta ocupado, falso de lo contrario
         bool esta_ocupado(int coord_x, int coord_y);
         
-        // PRE:
-        // POS:
+        // PRE: recibe un puntero a edificio, uno a material y dos coordenadas
+        // POS: ocupa el casillero con un puntero a edificio o material, segun corresponda, en las coordenadas recibidas
         void ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y);
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: libera el casillero en las coordenadas recibidas
         void liberar_posicion(int coordenada_x, int coordenada_y);
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: devuleve verdadero en caso que se pueda construir en las coordenadas recibidas, falso de lo contrario
         bool se_puede_construir(int coord_x, int coord_y);
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: devuelve verdadero en caso que las coordenadas recibidas esten fuera de rango, falso de lo contrario
         bool coordenadas_fuera_de_rango(int coord_x, int coord_y);
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: muestra el saludo del objeto que se encuntra en las coordenadas recibidas, si no hay nada le avisa al ususario
         void consultar_coordenada(int coord_x, int coord_y);
 
-        // PRE:
-        // POS:
+        // PRE: recibe la cantidad de material a insertar
+        // POS: devuelve verdadero si la cantidad de casilleros transitbales es >= a la cantidad recibida
         bool es_posible_insertar_materiales(int cantidad_a_insertar);
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero a las coordenadas generadas para insertar material
         int* generar_coordenadas_validas();
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: devuleve un puntero a edificio en las coordenadas recibidas
         Edificio* obtener_elemento(int coord_x , int coord_y);
 
         // PRE:
-        // POS:
+        // POS: muestra el mapa por pantalla
         void mostrar_mapa();
 
+        // PRE: recibe dos coordenadas
+        // POS: devuelve el tipo del casillero en las coordenadas recibidas
         char obtener_casillero(int coordenada_x, int coordenada_y);
 
 
-        // PRE:
-        // POS:
+        // Destructor
         ~Mapa();
 };
 

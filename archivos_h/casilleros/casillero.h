@@ -6,44 +6,38 @@
 
 class Casillero{
     public:
-        // PRE:
-        // POS:
+        // Constructor
         Casillero();
 
-        // PRE: recibe dos coordenadas
-        // POS: crea un casillero en las coordenadas recibidas
-        //Casillero(int coord_x, int coord_y);
-
-        // PRE:
-        // POS:
+        // PRE: recibe un puntero a edificio y uno a material
+        // POS: ocupa el casillero con el objeto que corresponda
         virtual void usar_casillero(Edificio* edificio, Material* material);
 
         // PRE:
-        // POS:
+        // POS: vacia el casillero
         virtual void vaciar_casillero();
 
         // PRE:
-        // POS:
+        // POS: devuelve verdadero si el casillero esta ocupado, falso de lo contrario
         virtual bool esta_ocupado();
 
         // PRE:
-        // POS:
+        // POS: muestra el mensaje del casillero
         virtual void mostrar() = 0;
 
         // PRE:
-        // POS:
+        // POS: devuelve el tipo del casillero
         virtual char obtener_tipo() = 0;
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero al edificio que se encuentra en el casillero
         virtual Edificio* obtener_edificio();
 
         // PRE:
-        // POS:
+        // POS: devuelve un puntero al material que se encuentra en el casillero
         virtual Material* obtener_material();
 
-        // PRE:
-        // POS:
+        // Destructor
         virtual ~Casillero();
 };
 

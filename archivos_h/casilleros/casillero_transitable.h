@@ -16,7 +16,7 @@ class Casillero_transitable: public Casillero {
         void usar_casillero(Edificio* edificio, Material* material);
 
         // PRE:
-        // POS:
+        // POS: vacia el casillero
         void vaciar_casillero();
 
         // PRE:

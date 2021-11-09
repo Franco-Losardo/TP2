@@ -35,39 +35,38 @@ class Edificio{
         string obtener_representacion();
         
         // PRE:
-        // POS:
+        // POS: devuelve los materiales porducidos por el edificio
         virtual int brindar_materiales() = 0;
 
         // PRE:
-        // POS:
+        // POS: muestra por pantalla el saludo del edificio
         virtual void mostrar_saludo() = 0;
         
         // PRE:
-        // POS:
+        // POS: devuelve la cantidad de edficios en cuestion construidos
         virtual int obtener_construidos() = 0;
 
         // PRE:
-        // POS:
+        // POS: devuelve un doble puntero a las ubicaciones del edificio en cuestion
         virtual int** obtener_ubicaciones() = 0;
 
-        // PRE:
-        // POS:
+        // PRE: recibe dos coordenadas
+        // POS: borra las coordenadas recibidas del arreglo de ubicaciones
         virtual void demoler(int coordenada_x, int coordenada_y) = 0;
 
         // PRE:
-        // POS:
+        // POS: muestra las caractersiticas del edificio
         virtual void mostrar_edificio() = 0;
 
         // PRE:
-        // POS:
+        // POS: borra el vector de ubicaciones del edificio en cuestion
         virtual void borrar_ubicaciones() = 0;
 
-        // PRE:
-        // POS:
+        // PRE: recibe la nueva longitud del arreglo
+        // POS: redimensiona el arreglo de ubicaciones
         virtual void redimensionar_ubicaciones(int nueva_longitud) = 0;
 
-        // PRE:
-        // POS:
+        // Destructor
         virtual ~Edificio();
 };
 
