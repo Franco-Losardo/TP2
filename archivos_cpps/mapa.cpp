@@ -49,10 +49,6 @@ void Mapa::cargar_mapa() {
     archivo.close();
 }
 
-void Mapa::colocar_casillero(int coord_x, int coord_y, Casillero* casillero){
-    this -> mapa[coord_x][coord_y] = casillero;
-}
-
 bool Mapa::es_posible_insertar_materiales(int cantidad_a_insertar){
     int contador = 0;
     for (int fila = 0; fila < this -> cantidad_filas; fila++){
@@ -71,7 +67,7 @@ int* Mapa::generar_coordenadas_validas() {
         int coord_x = (rand() % this -> cantidad_filas);
         int coord_y = (rand() % this -> cantidad_columnas);
         if (this -> mapa[coord_x][coord_y] -> obtener_tipo() == 'C' && !this -> mapa[coord_x][coord_y] -> esta_ocupado()){
-            coordenadas_validas = new int[2];//liberamos?
+            coordenadas_validas = new int[2];
             coordenadas_validas[0] = coord_x;
             coordenadas_validas[1] = coord_y;
         }
@@ -82,21 +78,22 @@ int* Mapa::generar_coordenadas_validas() {
 bool Mapa::esta_ocupado(int coord_x, int coord_y){
     return this -> mapa[coord_x][coord_y] -> esta_ocupado();
 }
-
+char Mapa::obtener_casillero(int coordenada_x, int coordenada_y){
+    return this -> mapa[coordenada_x][coordenada_y] -> obtener_tipo();
+}
 Edificio* Mapa::obtener_elemento(int coord_x, int coord_y){
     return this -> mapa[coord_x][coord_y] -> obtener_edificio();
 }
 
-void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y){
-    if (edificio){
-        this -> mapa[coord_x][coord_y] -> usar_casillero(edificio, 0);
-    }
-    else{
-        this -> mapa[coord_x][coord_y] -> usar_casillero(0, material);
-    }
+void Mapa::ocupar_casillero(Edificio* edificio, Material* material, int coord_x, int coord_y) {
+    this -> mapa[coord_x][coord_y] -> usar_casillero(edificio, material);
 }
 
-bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y){
+void Mapa::liberar_posicion(int coordenada_x, int coordenada_y) {
+    this -> mapa[coordenada_x][coordenada_y] -> vaciar_casillero();
+}
+
+bool Mapa::coordenadas_fuera_de_rango(int coord_x, int coord_y) {
     return (coord_x >= cantidad_filas || coord_y >= cantidad_columnas);
 }
 
@@ -144,12 +141,9 @@ Mapa::~Mapa() {
     for (int fila = 0; fila < this -> cantidad_filas; fila++) {
         for (int columna = 0; columna < this -> cantidad_columnas; columna++){
             delete this -> mapa[fila][columna];
-            this -> mapa[fila][columna] = nullptr;
         }
         delete [] this -> mapa[fila];
-        this -> mapa[fila] = nullptr;
     }
     delete [] this -> mapa;
-    this -> mapa = nullptr;
-    cout << "MAPA" << endl;
+    this -> mapa = 0;
 }

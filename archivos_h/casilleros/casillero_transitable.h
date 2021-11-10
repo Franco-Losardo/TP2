@@ -6,7 +6,7 @@
 class Casillero_transitable: public Casillero {
     private:
         Material* material;
-        char tipo;
+
     public:
         // Construcor
         Casillero_transitable(char tipo);
@@ -14,6 +14,10 @@ class Casillero_transitable: public Casillero {
         // PRE: recibe un puntero a edifcio y a material
         // POS: ubica en el casillero el puntero a material
         void usar_casillero(Edificio* edificio, Material* material);
+
+        // PRE:
+        // POS: vacia el casillero
+        void vaciar_casillero();
 
         // PRE:
         // POS: devuelve verdadero en caso que el casillero este ocupado, falso de lo contrario

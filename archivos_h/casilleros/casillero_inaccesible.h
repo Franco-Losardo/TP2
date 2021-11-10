@@ -4,9 +4,6 @@
 #include "casillero.h"
 
 class Casillero_inaccesible: public Casillero {
-    private:
-        char tipo;
-
     public:
         // Constructor
         Casillero_inaccesible(char tipo);

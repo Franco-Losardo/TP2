@@ -5,21 +5,20 @@ using namespace std;
 Material::Material(){}
 
 Material::Material(string tipo_material, int cantidad){
-    this -> nombre_material = tipo_material;
+    this -> tipo_material = tipo_material;
     this -> cantidad = cantidad;
 }
 
-
-void Material::establecer_cantidad(int cantidad_material) {
-    this -> cantidad += cantidad_material;
-}
-
 string Material::obtener_tipo(){
-    return this -> nombre_material;
+    return this -> tipo_material;
 }
 
 int Material::obtener_cantidad(){
     return this -> cantidad;
+}
+
+void Material::establecer_cantidad(int cantidad_material) {
+    this -> cantidad += cantidad_material;
 }
 
 void Material::usar_material(int cantidad_necesaria){
@@ -27,22 +26,22 @@ void Material::usar_material(int cantidad_necesaria){
 }
 
 void Material::mostrar_material(){
-    cout << "--> Material: " << this -> nombre_material << ", cantidad: " << this -> cantidad << endl;
+    cout << "--> Material: " << this -> tipo_material << ", cantidad: " << this -> cantidad << endl;
 }
 
 void Material::saludar(){
-    cout << "Soy un/a " << this->nombre_material << " y me encuentro en el casillero consultado" << endl;
+    cout << "Soy un/a " << this->tipo_material << " y me encuentro en el casillero consultado" << endl;
 }
 
 char Material::obtener_representacion(){
     char representacion = 'a';
-    if(this -> nombre_material == "piedra"){
+    if(this -> tipo_material == "piedra"){
         representacion = 'S';
     }
-    else if(this -> nombre_material == "madera"){
+    else if(this -> tipo_material == "madera"){
         representacion = 'W';
     }
-    else if(this -> nombre_material == "metal"){
+    else if(this -> tipo_material == "metal"){
         representacion = 'I';
     }
     return representacion;

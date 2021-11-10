@@ -2,14 +2,18 @@
 
 using namespace std;
 
-Casillero_construible::Casillero_construible() {}
-
 Casillero_construible::Casillero_construible(char tipo) {
+    this -> edificio = 0;
     this -> tipo = tipo;
 }
 
 void Casillero_construible::usar_casillero(Edificio* edificio, Material* material) {
     this -> edificio = edificio;
+}
+
+void Casillero_construible::vaciar_casillero() {
+    delete this -> edificio;
+    this -> edificio = 0;
 }
 
 bool Casillero_construible::esta_ocupado() {
@@ -30,7 +34,7 @@ void Casillero_construible::mostrar() {
         cout << endl;
         this -> edificio -> mostrar_saludo();
     }
-    else{
+    else {
         cout << COLOR_VERDE << "Soy un casillero construible y me encuentro vacío" << COLOR_POR_DEFECTO << endl;
     }
 }
@@ -38,7 +42,6 @@ void Casillero_construible::mostrar() {
 Casillero_construible::~Casillero_construible() {
     if (this -> edificio) {
         delete this -> edificio;
-        this -> edificio = nullptr;
     }
-    cout << "CASILLERO CONSTRUIBLE" << endl;
+    this -> edificio = 0;
 }

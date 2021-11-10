@@ -22,7 +22,7 @@ class Inventario {
 
         // PRE: recibe el nombre del material
         // POS: devuelve la posicion del material recibido
-        int posicion_del_material(string material);
+        int posicion_del_material(std::string material);
 
         // PRE: recibe un entero
         // POS: redimensiona el vector de materiales con la longitud recibida por parametro

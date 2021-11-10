@@ -43,11 +43,11 @@ class Andypolis{
 
         // PRE: recibe el nombre de un edificio
         // POS: devuelve verdadero en caso que el edificio exista, false de lo contrario
-        bool existe_el_edificio(string edificio);
+        bool existe_el_edificio(std::string edificio);
 
         // PRE: recibe un numero de edificio, un nombre, y la cantidad de piedra, madera, metal y los permitidos
         // POS: agrega el edificio recibido al vector de edificios disponibles para construir
-        void agregar_edificio_a_vector(int numero_edificio, string nombre, int piedra, int madera, int metal, int permitidos);
+        void agregar_edificio_a_vector(int numero_edificio, std::string nombre, int piedra, int madera, int metal, int permitidos);
 
         // PRE:
         // POS: le pide al usuario las coordenadas a consultar
@@ -59,7 +59,7 @@ class Andypolis{
 
         // PRE: recibe el nombre de un edificio
         // POS: actualiza los materiales y le suma la mitad de los materiales requeridos para constuir el edifcio pasado por parametro
-        void devolver_mitad_materiales(string nombre_edificio);
+        void devolver_mitad_materiales(std::string nombre_edificio);
 
         // PRE:
         // POS: lee el archivo ubicaciones.txt, crea los edificios construidos y los agrega al mapa
@@ -87,15 +87,15 @@ class Andypolis{
         
         // PRE: recibe un nombre de un edificio a construir
         // POS: devuelve verdadero en caso que haya materiales suficientes para construir el edificio recibido por parametro, falso de lo contrario
-        bool hay_materiales_suficientes(string edificio_a_construir);
+        bool hay_materiales_suficientes(std::string edificio_a_construir);
         
         // PRE: recibe el nombre del edificio a construir
         // POS: devuelve la posicion donde se encuentra el edificio recibido por parametro en el vector de edificios disponibles para construir
-        int posicion_del_edifcio(string edificio_a_construir);
+        int posicion_del_edifcio(std::string edificio_a_construir);
         
         // PRE: recibe el nombre del edificio a construir
         // POS: le pide al usuario confirmacion para construir el edificio
-        bool confirmar_construccion(string edificio_a_construir);
+        bool confirmar_construccion(std::string edificio_a_construir);
         
         // PRE:
         // POS: devuelve un puntero a las coordenadas ingresadas
@@ -103,7 +103,7 @@ class Andypolis{
         
         // PRE: recibe un nombre de edificio y las coordenadas donde crearlo
         // POS: crea el edificio y devuelve un puntero a edificio
-        Edificio* crear_edificio(string nombre_edificio, int coord_x, int coord_y);
+        Edificio* crear_edificio(std::string nombre_edificio, int coord_x, int coord_y);
         
         // PRE: recibe dos coordenadas
         // POS: devuelve veradero en caso que se puede construir en las coordenadas recibidas
@@ -119,7 +119,7 @@ class Andypolis{
         
         // PRE: recibe el nombre del edificio a construir
         // POS: devuelve verdadero en caso que se haya alcanzado la maxima cantidad de construidos posibles del edificio recibido
-        bool se_alcanzo_maximo_permitido(string edificio_a_construir);
+        bool se_alcanzo_maximo_permitido(std::string edificio_a_construir);
 
         // PRE: 
         // POS: muestra el menú de opciones
@@ -131,7 +131,7 @@ class Andypolis{
 
         // PRE:
         // POS: pide el nombre del edifcio
-        string pedir_nombre_de_edificio();
+        std::string pedir_nombre_de_edificio();
 
         // POS:
         // PRE: devuelve un puntero a un vector que contiene las posiciones de cada material dentro del vector de materiales 
@@ -139,15 +139,15 @@ class Andypolis{
 
         // PRE: recibe el nombre del edificio a construir
         // POS: verifica que se pueda construir el nombre del edificio recibido
-        void validar_nombre_de_edificio(string edificio_a_construir);
+        void validar_nombre_de_edificio(std::string edificio_a_construir);
 
         // PRE: recibe dos coordenadas
         // POS: verifica que se pueda demoler en las coordenadas recibidas
         void validar_entrada_para_demoler(int coord_x, int coord_y);
 
-        // PRE: recibe la cantidad de edificios construidos y un doble puntero a entero donde estan las ubicaciones
+        // PRE: recibe la cantidad de edificios permitidos y un doble puntero a entero donde estan las ubicaciones
         // POS: muestra las ubicaciones donde hay edificios construidos
-        void mostrar_ubicaciones(int construidos, int** ubicaciones);
+        void mostrar_ubicaciones(int permitidos, int** ubicaciones);
 
         // PRE: -
         // POS: Muetra por pantalla la lista de edificios construidos

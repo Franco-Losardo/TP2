@@ -3,15 +3,21 @@
 using namespace std;
 
 Casillero_transitable::Casillero_transitable(char tipo) {
+    this -> material = 0;
     this -> tipo = tipo;
-}
-
-bool Casillero_transitable::esta_ocupado() {
-    return this -> material != 0;
 }
 
 void Casillero_transitable::usar_casillero(Edificio* edificio, Material* material) {
     this -> material = material;
+}
+
+void Casillero_transitable::vaciar_casillero() {
+    delete [] this -> material;
+    this -> material = 0;
+}
+
+bool Casillero_transitable::esta_ocupado() {
+    return this -> material != 0;
 }
 
 char Casillero_transitable::obtener_tipo() {
@@ -35,7 +41,6 @@ void Casillero_transitable::mostrar() {
 Casillero_transitable::~Casillero_transitable() {
     if(this -> material) {
         delete this -> material;
-        this -> material = nullptr;
     }
-    cout << "CASILLERO TRANSITABLE" << endl;
+    this -> material = 0;
 }

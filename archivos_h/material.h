@@ -2,19 +2,16 @@
 #define MATERIAL_H
 
 #include <iostream>
-#include <string>
-using namespace std;
 
 class Material{
     private:
         // Atributos
-        string nombre_material; // Tipo de material
+        std::string tipo_material;
         int cantidad;
-        //tal vez nos convenga q los materiales tengas coordenadas?
 
     public:
-        Material(string tipo_material, int cantidad);
         Material();
+        Material(std::string tipo_material, int cantidad);
         // Métodos
         
         // PRE: Recibe un entero
@@ -23,7 +20,7 @@ class Material{
 
         // PRE: -
         // POS: Devuelve el tipo del material
-        string obtener_tipo();
+        std::string obtener_tipo();
 
         // PRE: -
         // POS: Devuelve la cantidad del material

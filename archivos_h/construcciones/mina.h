@@ -1,7 +1,6 @@
 #ifndef MINA_H
 #define MINA_H
 #include "../edificios.h"
-#include <iostream>
 
 class Mina: public Edificio{
     private:
@@ -15,7 +14,7 @@ class Mina: public Edificio{
         Mina(std::string nombre, int coord_x, int coord_y);
 
         // PRE:
-        // POS: devuelve la cantidad de material que corresponda
+        // POS: devuelve los materiales porducidos por el edificio
         int brindar_materiales();
 
         // PRE:
@@ -23,19 +22,28 @@ class Mina: public Edificio{
         void mostrar_saludo();
 
         // PRE: 
-        // POS: devuelve la cantidad de edificios construidos de este tipo
+        // POS: devuelve la cantidad de edificios construidos
         int obtener_construidos();
 
         // PRE:
-        // POS:
+        // POS: muestra las caracteristicas del edificio(materiales, construidos, cuántos mas se puede construir y si brinda materiales o no)
         void mostrar_edificio();
 
         // PRE:
         // POS: muestra las caracteristicas del edificio(materiales, construidos, cuántos mas se puede construir y si brinda materiales o no)
         int** obtener_ubicaciones();
 
-        // Destructor
-        ~Mina();
+        // PRE: recibe dos coordenadas
+        // POS: borra las coordenadas recibidas del arreglo de ubicaciones
+        void demoler(int coordenada_x, int coordenada_y);
+
+        // PRE:
+        // POS: borra las ubicaciones del edificio en cuestion
+        void borrar_ubicaciones();
+
+        // PRE: recibe la nueva longitud del arreglo
+        // POS: redimensiona el arreglo de ubicaciones
+        void redimensionar_ubicaciones(int nueva_longitud);
 };
 
 #endif
