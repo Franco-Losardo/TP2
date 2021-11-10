@@ -353,7 +353,7 @@ void Andypolis::validar_entrada_para_demoler(int coordenada_x, int coordenada_y)
 
 void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     int pos_edificio = posicion_del_edifcio(nombre_edificio);
-    int* materiales_necesarios = obtener_materiales_necesarios(pos_edificio); //liberamos?
+    int* materiales_necesarios = obtener_materiales_necesarios(pos_edificio);
     int piedra_necesaria = materiales_necesarios[0];
     int madera_necesaria = materiales_necesarios[1];
     int metal_necesario = materiales_necesarios[2];
@@ -363,7 +363,6 @@ void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     materiales_actuales[posiciones[1]].establecer_cantidad(madera_necesaria / 2);
     materiales_actuales[posiciones[2]].establecer_cantidad(metal_necesario / 2);
     delete [] posiciones;
-    delete [] materiales_necesarios;
     posiciones = 0;
     materiales_necesarios = 0;
 }
