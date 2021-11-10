@@ -17,9 +17,12 @@ string Edificio::obtener_representacion(){
     return this->representacion;
 }
 
-
 int* Edificio::obtener_materiales_necesarios() { 
     return this -> materiales_necesarios;
+}
+
+int Edificio::brindar_materiales() {
+    return 0;
 }
 
 Edificio::~Edificio(){

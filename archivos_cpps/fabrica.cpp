@@ -13,36 +13,58 @@ Fabrica::Fabrica(string nombre, int piedra_necesaria, int madera_necesaria, int 
     this -> materiales_necesarios[0] = piedra_necesaria;
     this -> materiales_necesarios[1] = madera_necesaria;
     this -> materiales_necesarios[2] = metal_necesario;
-    this -> ubicaciones = new int *[this -> cantidad_construidos];
+    this -> ubicaciones = new int* [this -> cantidad_construidos];
 }
 
 Fabrica::Fabrica(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
-    if (!this -> ubicaciones){
-        this -> ubicaciones = new int*[1];
-    }
-    else{
-        this -> redimensionar_ubicaciones(this -> cantidad_construidos + 1);
-    }
-    this->ubicaciones[cantidad_construidos] = new int[2];
-    this -> ubicaciones[cantidad_construidos][0] = coord_x;
-    this -> ubicaciones[cantidad_construidos][1] = coord_y;
+    this -> redimensionar_ubicaciones(this -> cantidad_construidos + 1);
+    this -> ubicaciones[this -> cantidad_construidos] = new int[2];
+    this -> ubicaciones[this -> cantidad_construidos][0] = coord_x;
+    this -> ubicaciones[this -> cantidad_construidos][1] = coord_y;
     this -> cantidad_construidos++;
+}
+
+int Fabrica::obtener_construidos() {
+    return this -> cantidad_construidos;
+}
+
+int** Fabrica::obtener_ubicaciones() {
+    return this -> ubicaciones;
 }
 
 int Fabrica::brindar_materiales() {
     return BRINDAR_MATERIALES_FABRICA;
 }
 
-void Fabrica::redimensionar_ubicaciones(int nueva_longitud){
-    int **nuevo_vector_ubicaciones = new int *[nueva_longitud];
+void Fabrica::demoler(int coordenada_x, int coordenada_y) {
+    int indice = 0;
+    bool eliminada = false;
+    while (!eliminada) {
+        if (this -> ubicaciones[indice][0] == coordenada_x && this -> ubicaciones[indice][1] == coordenada_y) {
+            delete [] this -> ubicaciones[indice];
+            this -> ubicaciones[indice] = 0;
+            eliminada = true;
+        }
+        indice++;
+    }
+    this -> redimensionar_ubicaciones(this -> cantidad_construidos - 1);
+    this -> cantidad_construidos--;
+}
+
+void Fabrica::redimensionar_ubicaciones(int nueva_longitud) {
+    int** nuevo_vector_ubicaciones = new int *[nueva_longitud];
+    int* coordenadas = 0;
+    int indice = 0;
     for (int i = 0; i < this -> cantidad_construidos; i++) {
-        if (this->ubicaciones[i]) {
-            nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
+        coordenadas = this -> ubicaciones[i];
+        if (coordenadas) {
+            nuevo_vector_ubicaciones[indice] = this -> ubicaciones[i];
+            indice++;
         }
     }
-    delete[] this -> ubicaciones;
+    delete [] this -> ubicaciones;
     this -> ubicaciones = nuevo_vector_ubicaciones;
 }
 
@@ -58,53 +80,15 @@ void Fabrica::mostrar_edificio() {
     cout << COLOR_MARRON << LINEA_DIVISORIA << COLOR_POR_DEFECTO << endl;
 }
 
-int Fabrica::obtener_construidos() {
-    return this -> cantidad_construidos;
-}
-
-int** Fabrica::obtener_ubicaciones() {
-    return this -> ubicaciones;
-}
-
-void Fabrica::demoler(int coordenada_x, int coordenada_y) {
-    int indice = 0;
-    bool eliminada = false;
-    while (!eliminada) {
-        int* coordenadas = this -> ubicaciones[indice];
-        if (coordenadas[0] == coordenada_x && coordenadas[1] == coordenada_y) {
-            delete [] coordenadas;
-            delete[] this -> ubicaciones[indice];
-            coordenadas = 0;
-            this->ubicaciones[indice] = 0;
-            eliminada = true;
-        }
-        indice++;
-    }
-    this -> redimensionar_ubicaciones(this -> cantidad_construidos);
-    this -> cantidad_construidos--;
-}
-
 void Fabrica::mostrar_saludo() {
     cout << COLOR_MARRON <<"Soy una fabrica y me encuentro en el casillero consultado" << COLOR_POR_DEFECTO <<endl;
 }
 
-void Fabrica::borrar_ubicaciones(){
-    for (int i = 0; i < this->cantidad_permitida; i++) {
-        delete[] this -> ubicaciones[i];
+void Fabrica::borrar_ubicaciones() {
+    for (int i = 0; i < this -> cantidad_construidos; i++) {
+        delete[] this->ubicaciones[i];
         this -> ubicaciones[i] = 0;
     }
-    delete[] this -> ubicaciones;
-    this -> ubicaciones = 0;
-}
-
-Fabrica::~Fabrica(){
-    /*for (int i = 0; i < this -> cantidad_construidos; i++) {
-        delete [] this -> ubicaciones[i];
-        this -> ubicaciones[i] = 0;
-    }
-
     delete [] this -> ubicaciones;
-    this -> ubicaciones = 0;*/
-
-    cout << "FABRICA" << endl;
+    this -> ubicaciones = 0;
 }

@@ -17,15 +17,10 @@ Aserradero::Aserradero(string nombre, int piedra_necesaria, int madera_necesaria
 Aserradero::Aserradero(string nombre, int coord_x, int coord_y) {
     this -> nombre = nombre;
     this -> representacion = nombre[0];
-    if (!this -> ubicaciones) {
-        this -> ubicaciones = new int*[1];
-    }
-    else{
-        this -> redimensionar_ubicaciones(this -> cantidad_construidos + 1);
-    }
-    this->ubicaciones[cantidad_construidos] = new int[2];
-    this -> ubicaciones[cantidad_construidos][0] = coord_x;
-    this -> ubicaciones[cantidad_construidos][1] = coord_y;
+    this -> redimensionar_ubicaciones(this -> cantidad_construidos + 1);
+    this -> ubicaciones[this -> cantidad_construidos] = new int[2];
+    this -> ubicaciones[this -> cantidad_construidos][0] = coord_x;
+    this -> ubicaciones[this -> cantidad_construidos][1] = coord_y;
     this -> cantidad_construidos++;
 }
 
@@ -37,37 +32,38 @@ int** Aserradero::obtener_ubicaciones() {
     return this -> ubicaciones;
 }
 
-void Aserradero::redimensionar_ubicaciones(int nueva_longitud) {
-    int **nuevo_vector_ubicaciones = new int *[nueva_longitud];
-    for (int i = 0; i < this->cantidad_construidos; i++) {
-        if (this -> ubicaciones[i]) {
-            nuevo_vector_ubicaciones[i] = this->ubicaciones[i];
-        }
-    }
-    delete[] this->ubicaciones;
-    this->ubicaciones = nuevo_vector_ubicaciones;
+int Aserradero::brindar_materiales() {
+    return BRINDAR_MATERIALES_ASERRADERO;
 }
 
 void Aserradero::demoler(int coordenada_x, int coordenada_y) {
     int indice = 0;
     bool eliminada = false;
     while (!eliminada) {
-        int* coordenadas = this -> ubicaciones[indice];
-        if (coordenadas[0] == coordenada_x && coordenadas[1] == coordenada_y) {
-            delete [] coordenadas;
-            delete[] this -> ubicaciones[indice];
-            coordenadas = 0;
+        if (this -> ubicaciones[indice][0] == coordenada_x && this -> ubicaciones[indice][1] == coordenada_y) {
+            delete [] this -> ubicaciones[indice];
             this -> ubicaciones[indice] = 0;
             eliminada = true;
         }
         indice++;
     }
-    this->redimensionar_ubicaciones(this->cantidad_construidos);
+    this -> redimensionar_ubicaciones(this -> cantidad_construidos - 1);
     this -> cantidad_construidos--;
 }
 
-int Aserradero::brindar_materiales() {
-    return BRINDAR_MATERIALES_ASERRADERO;
+void Aserradero::redimensionar_ubicaciones(int nueva_longitud) {
+    int** nuevo_vector_ubicaciones = new int *[nueva_longitud];
+    int* coordenadas = 0;
+    int indice = 0;
+    for (int i = 0; i < this -> cantidad_construidos; i++) {
+        coordenadas = this -> ubicaciones[i];
+        if (coordenadas) {
+            nuevo_vector_ubicaciones[indice] = this -> ubicaciones[i];
+            indice++;
+        }
+    }
+    delete [] this -> ubicaciones;
+    this -> ubicaciones = nuevo_vector_ubicaciones;
 }
 
 void Aserradero::mostrar_edificio() {
@@ -87,22 +83,10 @@ void Aserradero::mostrar_saludo() {
 }
 
 void Aserradero::borrar_ubicaciones() {
-    for (int i = 0; i < this -> cantidad_permitida; i++) {
+    for (int i = 0; i < this -> cantidad_construidos; i++){
         delete [] this -> ubicaciones[i];
         this -> ubicaciones[i] = 0;
     }
     delete [] this -> ubicaciones;
     this -> ubicaciones = 0;
-}
-
-Aserradero::~Aserradero() {
-    /*for (int i = 0; i < this -> cantidad_construidos; i++) {
-        delete [] this -> ubicaciones[i];
-        this -> ubicaciones[i] = 0;
-    }
-
-    delete [] this -> ubicaciones;
-    this -> ubicaciones = 0;*/
-
-    cout << "ASERRADERO" << endl;
 }

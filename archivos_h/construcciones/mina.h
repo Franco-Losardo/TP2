@@ -45,9 +45,6 @@ class Mina: public Edificio{
         // PRE: recibe la nueva longitud del arreglo
         // POS: redimensiona el arreglo de ubicaciones
         void redimensionar_ubicaciones(int nueva_longitud);
-
-        // Destructor
-        ~Mina();
 };
 
 #endif

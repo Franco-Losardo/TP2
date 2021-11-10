@@ -36,7 +36,7 @@ class Edificio{
         
         // PRE:
         // POS: devuelve los materiales porducidos por el edificio
-        virtual int brindar_materiales() = 0;
+        virtual int brindar_materiales();
 
         // PRE:
         // POS: muestra por pantalla el saludo del edificio

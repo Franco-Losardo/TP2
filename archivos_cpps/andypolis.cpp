@@ -104,7 +104,6 @@ void Andypolis::redimensionar_arreglo_edificios(int nueva_longitud) {
     }
     delete [] this -> edificios_disponibles;
     this -> edificios_disponibles = nuevo_vector_edificios;
-    //this -> cantidad_edificios = nueva_longitud;
 }
 
 void Andypolis::guardar_edificios() {
@@ -295,13 +294,9 @@ void Andypolis::construir_edificio_por_nombre() {
     validar_nombre_de_edificio(edificio_a_construir);
 }
 
-void Andypolis::mostrar_ubicaciones(int permitidos, int** ubicaciones) {
-    for (int j = 0; j < permitidos; j++) {
-        if (ubicaciones[j]){
-            //cout << ubicaciones[j] << endl;
-            cout << "(" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
-            //cout << "entro" << endl;
-        }
+void Andypolis::mostrar_ubicaciones(int construidos, int** ubicaciones) {
+    for (int j = 0; j < construidos; j++) {
+        cout << "(" << ubicaciones[j][0] << ", " << ubicaciones[j][1] << ") ";
     }
 }
 
@@ -316,7 +311,7 @@ void Andypolis::listar_edificios_construidos() {
             cout << "--> " << COLOR_VERDE_AGUA << this -> edificios_disponibles[i] -> obtener_nombre() << COLOR_POR_DEFECTO << endl;
             cout << "Construidos: " << construidos << endl;
             cout << "Ubicaciones: ";
-            this -> mostrar_ubicaciones(this -> edificios_disponibles[i] -> obtener_cantidad_permitida(), ubicaciones);
+            this -> mostrar_ubicaciones(this -> edificios_disponibles[i] -> obtener_construidos(), ubicaciones);
             cout << endl;
         }
     }

@@ -6,7 +6,6 @@
 class Casillero_construible: public Casillero {
     private:
         Edificio* edificio;
-        char tipo;
 
     public:
         // Constructor

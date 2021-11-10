@@ -5,6 +5,9 @@
 #include "../edificios.h"
 
 class Casillero{
+    protected:
+        char tipo;
+
     public:
         // Constructor
         Casillero();

@@ -6,7 +6,7 @@
 class Casillero_transitable: public Casillero {
     private:
         Material* material;
-        char tipo;
+
     public:
         // Construcor
         Casillero_transitable(char tipo);

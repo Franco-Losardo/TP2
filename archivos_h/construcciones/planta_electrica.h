@@ -15,10 +15,6 @@ class Planta_electrica: public Edificio{
         Planta_electrica(std::string nombre, int coord_x, int coord_y);
 
         // PRE:
-        // POS: devuelve los materiales porducidos por el edificio
-        int brindar_materiales();
-
-        // PRE:
         // POS: muestra el saludo del edificio
         void mostrar_saludo();
 
@@ -45,9 +41,6 @@ class Planta_electrica: public Edificio{
         // PRE: recibe la nueva longitud del arreglo
         // POS: redimensiona el arreglo de ubicaciones
         void redimensionar_ubicaciones(int nueva_longitud);
-
-        // Destructor
-        ~Planta_electrica();
 };
 
 #endif
