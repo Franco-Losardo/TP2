@@ -512,7 +512,7 @@ void Andypolis::elegir_opcion() {
     int opcion_ingresada;
     cout << "Ingrese la opcion deseada: ";
     cin >> opcion_ingresada;
-    //system(CLR_SCREEN);
+    system(CLR_SCREEN);
     switch (opcion_ingresada) {
         case 1:
             construir_edificio_por_nombre();
