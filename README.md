@@ -7,7 +7,7 @@ Los archivos `materiales.txt`, `ubicaciones.txt`, `edificios.txt` y `mapa.txt` t
 Hemos decidido crear una sola clase de Material dado que no nos parecia razon suficiente el hecho de que cada material salude cuando es muy parecido para todos solo con una letra de diferencia.
 
 Por otra parte, en cada hijo de la clase Edificio, implementamos un metodo para borrar las ubicaciones de dicho hijo ya que todos los objetos de un mismo tipo de edificio comparten un arreglo de subarreglos de ubicaciones. 
-Por lo tanto, de haberlo hecho con el destructor de cada hijo, al destruir ese edificio se ejecuta su destructor eliminando TODAS las ubicaciones de los objetos de ese tipo de edificio.
+Por lo tanto, de haberlo hecho con el destructor de cada hijo, al destruir ese edificio se ejecuta su destructor eliminando TODAS las ubicaciones de los objetos de ese tipo de edificio. Se debera compilar en linux para el correcto funcionamiento.
 
 Con respecto al diagrama UML, se adjunta en la entrega la foto del mismo. En caso de querer verlo un poco mejor y comentar, adjuntamos el link abajo de esta linea:
 
