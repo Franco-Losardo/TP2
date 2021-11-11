@@ -364,7 +364,6 @@ void Andypolis::devolver_mitad_materiales(string nombre_edificio) {
     materiales_actuales[posiciones[2]].establecer_cantidad(metal_necesario / 2);
     delete [] posiciones;
     posiciones = 0;
-    materiales_necesarios = 0;
 }
 
 void Andypolis::mostrar_mapa() {

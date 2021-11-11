@@ -1,6 +1,7 @@
 #ifndef ESCUELA_H
 #define ESCUELA_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Escuela: public Edificio{
     private:

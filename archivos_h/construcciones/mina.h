@@ -1,6 +1,7 @@
 #ifndef MINA_H
 #define MINA_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Mina: public Edificio{
     private:

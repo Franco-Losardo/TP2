@@ -1,6 +1,7 @@
 #ifndef ASERRADERO_H
 #define ASERRADERO_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Aserradero: public Edificio {
     private:

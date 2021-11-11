@@ -1,6 +1,7 @@
 #ifndef PLANTA_ELECTRICA_H
 #define PLANTA_ELECTRICA_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Planta_electrica: public Edificio{
     private:

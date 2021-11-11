@@ -1,6 +1,7 @@
 #ifndef OBELISCO_H
 #define OBELISCO_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Obelisco: public Edificio{
     private:

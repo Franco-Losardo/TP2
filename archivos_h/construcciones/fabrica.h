@@ -1,6 +1,7 @@
 #ifndef FABRICA_H
 #define FABRICA_H
 #include "../edificios.h"
+#include "../constantes.h"
 
 class Fabrica: public Edificio{
     private:

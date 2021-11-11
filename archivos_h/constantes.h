@@ -11,10 +11,10 @@ const int BRINDAR_MATERIALES_FABRICA = 40;//metales
 
 const char DELIMITADOR = ' ';
 
-const std::string RUTA_MATERIALES = "../archivos_de_texto/materiales.txt";
-const std::string RUTA_EDIFICIOS = "../archivos_de_texto/edificios.txt";
-const std::string RUTA_MAPA = "../archivos_de_texto/mapa.txt";
-const std::string RUTA_UBICACIONES = "../archivos_de_texto/ubicaciones.txt";
+const std::string RUTA_MATERIALES = "archivos_de_texto/materiales.txt";
+const std::string RUTA_EDIFICIOS = "archivos_de_texto/edificios.txt";
+const std::string RUTA_MAPA = "archivos_de_texto/mapa.txt";
+const std::string RUTA_UBICACIONES = "archivos_de_texto/ubicaciones.txt";
 const std::string LINEA_DIVISORIA = "\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550";
 
 const std::string COLOR_ROJO = "\033[38;5;196m";
