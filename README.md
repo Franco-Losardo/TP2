@@ -8,8 +8,9 @@ Sebastian Brizuela --> [Github](https://github.com/SebaB29)
 
 
 ## Compilacion
-Una vez descomprimido el zip, posicionado en el directorio TP2, se debera correr el comando `make main valgrind`. Este comando compilara el programa y lo ejecutara con los flags correspondientes de valgrind.
-En caso de solo querer compilarlo, podra hacerlo con `make` o `make main` y correr el programa con `./Andypolis`.
+Una vez descomprimido el zip, posicionado en el directorio TP2, se debera correr el comando `make main` o `make`. Este comando compilara el programa con los flags correspondientes, para ejecutarlo ingresar `./Andypolis`.
+
+En caso de querer correrlo con valgrind, podra hacerlo una vez compilado el progama como se menciono previamente y corriendo el comando `make valgrind`.
 
 Los archivos `materiales.txt`, `ubicaciones.txt`, `edificios.txt` y `mapa.txt` tienen que ir dentro de la carpeta `archivos_de_texto` para el correcto funcionamiento del programa.
 
